@@ -1,0 +1,52 @@
+/* Container for the table of contents */
+.toc_container {
+  position: sticky; /* Change to sticky positioning */
+  left: 5%; /* You can adjust this as necessary */
+  top: 50%; /* Adjust as necessary */
+  transform: translateY(-50%);
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0px;
+  transition: all 0.3s ease;
+  z-index: 1000; /* Ensure the TOC appears above other content */
+  width: 20%; /* Set a fixed width for the container */
+}
+
+/* Styling for the table of contents */
+.toc {
+  list-style: none;
+  padding: 0;
+}
+
+.toc li {
+  margin-bottom: 20px; /* Adjust spacing between items */
+  cursor: pointer;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.toc li.active {
+  font-weight: bold;
+  color: #0070f3; /* Change color for active section */
+  text-decoration: underline; /* Underline the text for active section */
+  text-decoration-color: #002044; /* Set the underline color to black */
+  text-decoration-skip-ink: auto; /* Allow ink skipping for underline */
+  text-underline-offset: 1rem;
+}
+
+.toc li:hover {
+  color: #0070f3; /* Change color on hover */
+}
+
+/* Update the CSS for the content container */
+.content {
+  flex: 1;
+  margin-left: 20%; /* Adjust margin to account for TOC width */
+}
+
+/* Adjust margin for the header to prevent overlap with TOC */
+.header {
+  align-items: center;
+  padding-bottom: 40px;
+  margin-right: 150px;
+}
