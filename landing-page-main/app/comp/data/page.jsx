@@ -1,124 +1,51 @@
-// pages/index.jsx
-"use client";
-import { useEffect, useState } from "react";
-import Head from "next/head";
-import styles from "./dataPage.module.css"; // Import the CSS module
-import Problem from "../problem/page";
-import Article from "./sections/sectionOne";
-import SectionOne from "./sections/sectionOne";
+"use client"
+import { useState } from "react";
+import SectionOne from "./sections/sectionOne"
 import SectionTwo from "./sections/sectionTwo";
 import SectionThree from "./sections/sectionThree";
+import dynamic from "next/dynamic";
+import styles from "./dataPage.module.css"
 import SectionFour from "./sections/sectionFour";
-import Image from "next/image";
-import { MdOutlineScreenSearchDesktop } from "react-icons/md";
-
-const UseCases = () => {
- const [activeSection, setActiveSection] = useState(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sectionElements = document.querySelectorAll('section');
-      const scrollPosition = window.scrollY;
-
-      sectionElements.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (scrollPosition >= sectionTop - 50 && scrollPosition < sectionTop + sectionHeight - 50) {
-          setActiveSection(section.id);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    section.scrollIntoView({ behavior: 'smooth' });
-  };
-
-
+function Sidebar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div>
+<div className="flex min-h-screen bg-gray-50 dark:bg-gray-950">
+  <div>
+  <nav className={`md:flex md:flex-col md:w-64 border-r border-gray-200 p-4 overflow-y-auto fixed top-0 left-0 transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} dark:border-gray-800`}>
 
+    <div className={`${styles.nav} grid md:gap-2.5 md:grid-cols-1 lg:grid-cols-none lg:gap-0`}>
+      <a href="#sectionOne" className={`${styles.navlink} md:block`}>Categorical Features</a>
+      <a href="#sectionTwo" className={`${styles.navlink} md:block`}>Gene Expression Levels Features</a>
+      <a href="#sectionThree" className={`${styles.navlink} md:block`}>Cell Viability Features</a>
+      <a href="#sectionFour" className={`${styles.navlink} md:block`}>Target Variables</a>
+    </div>
 
-      <div className={styles.container}>
-        {" "}
-        {/* Use the CSS module */}
-        <nav className={styles.toc_container}>
-          {" "}
-          {/* Use the new container */}
-          <p className="text-2xl  font-semibold">Table of</p>
-          <h1 className="text-2xl font-semibold mb-10"> Content</h1>
-          <ul className={styles.toc}>
-            {" "}
-            {/* Use the CSS module for styling */}
-            <li
-              className={activeSection === "section1" ? styles.active : ""}
-              onClick={() => scrollToSection("section1")}
-            >
-              1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Categorical
-              features
-            </li>
-            <li
-              className={activeSection === "section2" ? styles.active : ""}
-              onClick={() => scrollToSection("section2")}
-            >
-              2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gene
-              Expression levels features
-            </li>
-            <li
-              className={activeSection === "section3" ? styles.active : ""}
-              onClick={() => scrollToSection("section3")}
-            >
-              3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cell
-              viability features
-            </li>
-            <li
-              className={activeSection === "section4" ? styles.active : ""}
-              onClick={() => scrollToSection("section4")}
-            >
-              4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Target
-              variables
-            </li>
-          </ul>
-        </nav>
-        <main className={styles.content}> {/* Use the CSS module */}
-            <div className={`${styles.header} flex flex-col items-center justify-center`}>
-              <Image src="/images/20945567s.png" width={800} height={800} alt="logo" />
-                <div className='text-center '>
-
-                  <div className='text-3xl font-semibold'>Data Exploration</div>
-                  
-                  <p className='text-3xl flex justify-center gap-3'>Diving Deep: Understanding the Dataset .  <MdOutlineScreenSearchDesktop /> </p>
-                </div>
-             </div>
-          <section className={styles.section} id="section1">
-            <SectionOne />
-          </section>
-          <section className={styles.section} id="section2">
-
-            <SectionTwo />
-          </section>
-          <section  className={styles.section}id="section3">
-
-            <SectionThree />
-          </section>
-          <section  className={styles.section}id="section4">
-          
-            <SectionFour/>
-            
-          </section>
-        </main>
+  </nav>
+</div>
+  <main className={`${styles.contnet} flex-1 py-4 md:py-6 lg:py-12 md:px-6 ml-0 md:ml-64 pr-8`}>
+    <div className="max-w-3xl mx-auto grid gap-4">
+      <div id="sectionOne" className="section-container">
+        <SectionOne />
+      </div>
+      <div id="sectionTwo" className="section-container">
+        <SectionTwo />
+      </div>
+      <div id="sectionThree" className="section-container">
+        <SectionThree />
+      </div>
+      <div id="sectionFour" className="section-container">
+        <SectionFour />
       </div>
     </div>
-  );
-};
+  </main>
+</div>
 
-export default UseCases;
+
+
+  );
+}
+
+
+
+export default dynamic (() => Promise.resolve(Sidebar), {ssr: false})

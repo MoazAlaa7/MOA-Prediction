@@ -45,7 +45,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           >
             <div className="flex flex-row space-x-4 items-center">
               
-              <span className="font-semibold text-xl  flex">{item.title}</span>
+              <span className="font-semibold text-xl  flex ">{item.title}</span>
             </div>
 
             <div className={`${subMenuOpen ? 'rotate-180' : ''} flex`}>
@@ -53,7 +53,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           </button>
 
           {subMenuOpen && (
-            <div className="my-2 ml-12 flex flex-col space-y-4">
+            <div className="my-2 ml-12 flex flex-col space-y-4 ">
               {item.subMenuItems?.map((subItem, idx) => {
                 return (
                   <Link
@@ -73,7 +73,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
       ) : (
         <Link
           href={item.path}
-          className={`flex flex-row space-x-4 items-center p-2 rounded-lg hover:bg-zinc-100 ${
+          className={`flex flex-row space-x-4 items-center p-2 mb-10 rounded-lg hover:bg-zinc-100 ${
             item.path === pathname ? 'bg-zinc-100' : ''
           }`}
         >

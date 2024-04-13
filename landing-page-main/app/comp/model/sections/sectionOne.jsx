@@ -13,7 +13,7 @@ function SectionOne() {
       <article className={styles.article}>
 
         
-        <h2 className="text-3xl dark:text-gray-300">Categorical Features Analysis</h2>
+        <h2 className={styles.title}>Categorical Features Analysis</h2>
         {/* <p className={styles.subtitle}>
           Type of Treatment
         </p> */}
@@ -21,7 +21,7 @@ function SectionOne() {
         {/* <p className={styles.date}>2020-12-27</p> */}
 
         <section className={styles.content}>
-          <h3 className='dark:text-white'>Type of Treatment</h3>
+          <h3>Type of Treatment</h3>
           <Image src='/images/photo_2024-02-25_15-56-50.jpg' width={1000} height={1000} className='py-10'/>
               <p>
           In both the train and the test dataset, we find a similar rate of imbalance in terms of the way treatment was provided:

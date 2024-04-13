@@ -15,7 +15,7 @@ function SectionFour() {
       <article className={styles.article}>
 
         
-        <h2 className="text-3xl dark:text-gray-300">Target Variables</h2>
+        <h2 className={styles.title}>Target Variables</h2>
 
         {/* <p className={styles.subtitle}>
           Type of Treatment

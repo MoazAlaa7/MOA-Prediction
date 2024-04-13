@@ -30,7 +30,6 @@
   margin-top: 20px;
   font-size: 1rem;
   line-height: 1.6;
-  color: #333;
 }
 
 .content p {
@@ -42,13 +41,11 @@
 .content h2 {
   margin-top: 2rem;
   font-size: 1.8rem;
-  color: #444;
 }
 
 .content h3 {
   margin-top: 1.5rem;
   font-size: 1.7rem;
-  color: #555;
 }
 
 .content ul {
@@ -90,7 +87,6 @@
   background-color: #f9f9f9;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
-  color: #333;
 }
 
 .content img {
@@ -106,13 +102,11 @@
 /* Define styles for table headings */
 .table_heading {
   background-color: #9a9a9a;
-  color: #fff;
   font-weight: bold;
 }
 
 /* Define styles for table rows */
 .table_row {
-  background-color: #f4f4f4;
 }
 
 /* Define styles for table cells */

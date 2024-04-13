@@ -9,21 +9,20 @@
   background-image: url('../../../public/images/ooorganize.svg');
 }
 .heading {
-  font-size: 4.2rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
   background-image: linear-gradient(to right, #3b82f6, #b99d10);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 3rem;
-  padding-bottom: 1rem;
+
 }
 
 .paragraph {
-  font-size: 1.5rem;
-  font-weight: bold;
-  background-image: linear-gradient(to right, #000000, #6b7280);
+  font-size: 1.3rem;
+  font-weight:600;
+  background-color: #6b7280;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -40,9 +39,9 @@
 }
 
 .button {
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   border-radius: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -52,21 +51,34 @@
 }
 
 .grayButton {
-  background-color: #6b7280;
+  background-color: #8d97ac;
   color: white;
+}
+
+/* styles.module.css */
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
 }
 
 .imageContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-top: 2rem;
+  gap: 20px; /* Add some gap between images */
+}
+
+.imageFrame {
+  border-radius: 1rem;
+  overflow: hidden; /* Hide overflow content */
 }
 
 .image {
-  margin-right: 20px;
-  border-radius: 1rem; /* You can adjust the value as per your requirement */
-
+  width: 300px;
+  height: 200px;
+  object-fit: cover; /* Maintain aspect ratio */
 }
 
 .videoContainer {

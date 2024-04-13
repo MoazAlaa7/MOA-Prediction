@@ -16,10 +16,7 @@
   text-align: center;
 }
 
-.title {
-  font-size: 2rem;
-  color: #333;
-}
+
 
 .date {
   font-size: 0.875rem;
@@ -30,7 +27,6 @@
   margin-top: 20px;
   font-size: 1rem;
   line-height: 1.6;
-  color: #333;
 }
 
 .content p {
@@ -42,13 +38,11 @@
 .content h2 {
   margin-top: 2rem;
   font-size: 1.8rem;
-  color: #444;
 }
 
 .content h3 {
   margin-top: 1.5rem;
   font-size: 1.7rem;
-  color: #555;
 }
 
 .content ul {

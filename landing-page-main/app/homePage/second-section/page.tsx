@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import styles from './second-section.module.css'
 const features = [
@@ -63,10 +64,10 @@ const SecondSection = () => {
         "
       >
         <div className="p-5 justify-center md:w-1/3">
-          <div className="bg-gradient-to-r from-blue-800 to-yellow-500 bg-clip-text text-transparent text-4xl md:text-6xl font-bold pb-10">
+          <div className="bg-gradient-to-r from-blue-800 to-yellow-500 bg-clip-text text-transparent text-4xl md:text-4xl font-bold pb-10">
             MoA (Mechanism of Action):
           </div>
-          <div className="text-2xl mb-8">
+          <div className=" text-xl mb-8">
             In pharmacology, the term Mechanism of Action (MoA) embodies the
             intricate biochemical interactions underlying a drug's
             pharmacological effects. These interactions are pivotal, often
@@ -75,9 +76,9 @@ const SecondSection = () => {
             and potential side effects.
           </div>
           <Link href="../../Prediction">
-            <button className="bg-blue-500 text-white p-4 justify-center flex md:w-1/3 rounded-lg hover:bg-blue-600">
+            <Link href="../../Prediction" className="bg-blue-500 text-white p-4  mb-10 justify-center flex md:w-1/4 rounded-lg hover:bg-blue-600">
               Get Started
-            </button>
+            </Link>
           </Link>
         </div>
         
@@ -85,34 +86,65 @@ const SecondSection = () => {
         <div className="md:ml-10 md:mt-0 mt-5">
           <Image
             className="rounded-xl"
-            src="/images/third.jpg"
+            src="/images/first.jpg"
             width={600}
             height={600}
             alt="logo"
           />
         </div>
+        
       </div>
-                              <div className=" container text-center rounded-xl w-5/6 bg-blue-50 w-60vw mx-auto  h-[40vh] my-20 p-6 flex justify-center py-10">
-                            {/* First Column for video tab container */}
-                            <div className="w-1/2">
-                                {/* Add your video tab container here */}
-                                <video className="rounded-xl  " width={570} height={240} autoPlay muted loop>
-                                    <source src="/content/hero-1.mp4" type="video/mp4" />
 
-                                </video>
-                            </div>
-                            {/* Second Column for "How to Use" title */}
-                            <div className="w-1/2 mt-20 text-left">
-                                {/* Add any content related to "How to Use" here */}
-                                <h2 className="text-black text-2xl font-bold ">Watch this ,</h2>
-                                <h2 className="text-black text-2xl font-bold mb-10">How to Use Our Tool</h2>
-                                <p className="text-black text-lg ">In this section, we'll guide you through the steps to
-                                </p>
-                                <p className="text-black text-lg mb-4">  effectively utilize our tool . We'll walk you through it step by step, and provide you with all the necessary information to get started. 
-                                </p>
-                                
-                            </div>
-                        </div>
+<div className="w-full py-12 pb-10 mb-16 bg-zinc-50 dark:bg-gray-950">
+  <div className="container px-4 md:px-6">
+    <div className="flex flex-col items-center space-y-4 md:space-y-6 md:flex-row md:items-start md:space-x-6 lg:space-x-12">
+      
+      {/* Video Section */}
+      <div className="w-full md:w-1/3 md:mt-0 md:flex md:items-center"> {/* Take one-third of the width on medium screens and above */}
+        <div className="rounded-lg border border-gray-200 border-gray-200 bg-gray-50 w-full aspect-video overflow-hidden dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950">
+          <video className="w-full rounded-xl opacity-90" width={570} height={240} autoPlay muted loop>
+            <source src="/content/hero-1.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      
+      {/* Description Section */}
+      <div className="w-full md:w-2/3"> {/* Take two-thirds of the width on medium screens and above */}
+        <div className="dark:bg-gray-950 rounded-lg p-6 shadow-md">
+          <div className="bg-gradient-to-r from-blue-800 to-yellow-500 bg-clip-text text-transparent text-4xl md:text-4xl font-bold pb-10">
+            Getting Started with Your Website
+          </div>
+          <p className="text-gray-500 md:text-xl dark:text-gray-400">
+            Learn how to build and deploy your website in minutes using the Vercel platform.
+          </p>
+          <div className="grid gap-4 md:gap-8 mt-6">
+            <div className="grid gap-2">
+              <div className="font-medium">1. Sign in to Vercel</div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                First, sign in to the Vercel platform at vercel.com using your GitHub account.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              <div className="font-medium">2. Import your project</div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Once you're signed in, click the "Import Project" button in the top right corner of the dashboard.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              <div className="font-medium">3. Deploy your website</div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                After configuring your settings, click the "Deploy" button to deploy your website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
 
       <div className="flex-col items-center justify-center">
         <div
@@ -167,7 +199,7 @@ const SecondSection = () => {
                     {feature.name}
                   </div>
 
-                  <div className="bg-gradient-to-r from-gray-800 to-gray-500 bg-clip-text text-transparent text-lg">
+                  <div className="bg-gradient-to-r from-gray-800 to-gray-500 bg-clip-text text-transparent  text-sm dark:text-slate-300">
                     {feature.description}
                   </div>
                 </div>
@@ -176,8 +208,11 @@ const SecondSection = () => {
           ))}
         </div>
       </div>
+      
     </div>
+    
+    
   );
 };
 
-export default SecondSection;
+export default dynamic (() => Promise.resolve(SecondSection), {ssr: false})

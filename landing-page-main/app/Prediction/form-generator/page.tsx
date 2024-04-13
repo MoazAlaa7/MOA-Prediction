@@ -40,7 +40,7 @@ const FormGenerator = ({ filePathInputValue, shouldDisableUpload }: Props) => {
         <div>
           <h2>File path Input Value: </h2>
           <div className="flex flex-row h-full">
-            <div className="w-3/10 p-4 bg-white  h-full">
+            <div className="w-3/10 p-4 bg-white dark:bg-slate-900  h-full">
               <div className=''>
                 <h2 className="text-lg font-bold mb-4">Requirements</h2>
                 <ul>
@@ -51,7 +51,7 @@ const FormGenerator = ({ filePathInputValue, shouldDisableUpload }: Props) => {
                 </ul>
               </div>
             </div>
-            <div className="w-8/10 p-4 w-full bg-gray-100 h-full">
+            <div className="w-8/10 p-4 w-full dark:bg-slate-950 bg-gray-100 h-full">
               <div className=''>
                 <h2 className="text-lg font-bold mb-4">Result</h2>
                 <div>
@@ -71,7 +71,7 @@ const FormGenerator = ({ filePathInputValue, shouldDisableUpload }: Props) => {
                             </tr>
                           </tbody>
                         </table>
-                    </div>
+                    </div>3
               </div>
             </div>
           </div>

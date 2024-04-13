@@ -8,4 +8,4 @@ const Problem = () => {
   );
 }
 
-export default Problem;
+export default DataAndModel;

@@ -71,7 +71,7 @@ import {
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink
-              className="font-medium text-lg"
+              className="font-medium "
               >
                 Home
               </NavigationMenuLink>
@@ -85,7 +85,7 @@ import {
                       href="/"
                     >
                       <Logo  />
-                      <div className="mb-2 mt-4 text-lg font-medium">
+                      <div className="mb-2 mt-4  font-medium">
                        Bird Software
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
@@ -109,7 +109,7 @@ import {
         
             
           <NavigationMenuItem>
-          <NavigationMenuTrigger className=" font-medium text-lg ml-7">Insights</NavigationMenuTrigger>
+          <NavigationMenuTrigger className=" font-medium  ml-7">Insights</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 
@@ -131,7 +131,7 @@ import {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className=" font-medium text-lg ml-7">Research</NavigationMenuTrigger>
+          <NavigationMenuTrigger className=" font-medium  ml-7">Research</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 
@@ -151,7 +151,7 @@ import {
           <NavigationMenuItem>
             <Link href="../../Prediction" legacyBehavior passHref>
               <NavigationMenuLink
-              className="font-medium text-lg ml-7"
+              className="font-medium  ml-7"
               >
                 Prediction
               </NavigationMenuLink>
@@ -162,7 +162,7 @@ import {
           <NavigationMenuItem>
             <Link href="../../overview" legacyBehavior passHref>
               <NavigationMenuLink
-              className=" font-medium text-lg ml-7"
+              className=" font-medium  ml-7"
               >
                 Overview
               </NavigationMenuLink>

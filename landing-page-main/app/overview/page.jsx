@@ -15,6 +15,7 @@ const Overview = () => {
 
         {/* Intro / Business Problem */}
       <div className={styles.container}>
+
         <div className={styles.section}>
           <div className={styles.imageContainer}>
             <Image

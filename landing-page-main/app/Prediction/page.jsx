@@ -30,9 +30,9 @@ const Prediction = () => {
   };
 
   return (
-    <div className={` ${styles.padding_div} mx-auto px-4 rounded-lg  shadow-lg bg-gray-100`}>
+    <div className={` ${styles.padding_div} mx-auto px-4 rounded-lg  shadow-lg dark:bg-indigo-950 bg-gray-100`}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-gray-200 p-6 rounded-lg">
+        <div className="bg-gray-200 dark:bg-indigo-950 p-6 rounded-lg">
           <h2 className="text-2xl font-semibold mb-8">Requirements</h2>
           <ul className="list-disc list-inside">
             <li className='mb-4'>File size is less than 25MB</li>
@@ -42,7 +42,7 @@ const Prediction = () => {
           </ul>
         </div>
 
-        <div className="bg-white p-6  rounded-lg">
+        <div className=" p-6 bg-white dark:bg-indigo-950  rounded-lg">
           <form>
             <div className="mb-6">
               <label htmlFor="fileInput" className="block mb-2">

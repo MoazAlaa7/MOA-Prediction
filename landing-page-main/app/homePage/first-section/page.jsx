@@ -10,17 +10,20 @@ const FirstSection = () => {
 
       <div className="container mx-auto text-center">
         <div className={styles.heading}>
-          From Insight to Impact: Harnessing Machine Learning for Discovery
+          From Insight to Impact: Harnessing
+        </div>
+        <div className={`${styles.heading}  pb-10`}>
+           Machine Learning for Discovery
         </div>
 
         <p className={styles.paragraph}>
-          Welcome to our exploration of drug mechanisms of action (MoA),
+          Welcome to our exploration of drug mechanisms of action (MoA),where understanding how a drug works
         </p>
         <p className={styles.paragraph}>
-          where understanding how a drug works is crucial for its therapeutic
+           is crucial for its therapeutic effectiveness and impact on healthcare.
         </p>
         <p className={styles.paragraph}>
-          effectiveness and impact on healthcare.
+          
         </p>
 
         <div className={styles.buttonContainer}>
@@ -36,30 +39,31 @@ const FirstSection = () => {
           </Link>
         </div>
 
-        <div className={styles.imageContainer}>
-          <div>
-            <Image
-              className={styles.image}
-              src="/images/first.jpg"
-              width={400}
-              height={400}
-              alt="logo"
-            />
-          </div>
-
-          <div>
-            <Image
-              className={styles.image}
-              src="/images/second.jpg"
-              width={400}
-              height={400}
-              alt="logo"
-            />
-          </div>
+ <div className={styles.imageWrapper}>
+      <div className={styles.imageContainer}>
+        <div className={styles.imageFrame}>
+          <Image
+            className={styles.image}
+            src="/images/third.jpg"
+            width={400}
+            height={400}
+            alt="First Image"
+          />
         </div>
-
+        <div className={styles.imageFrame}>
+          <Image
+            className={styles.image}
+            src="/images/second.jpg"
+            width={400}
+            height={400}
+            alt="Second Image"
+          />
+        </div>
+      </div>
+    </div>
       </div>
     </section>
+    
     </div>
   );
 };
