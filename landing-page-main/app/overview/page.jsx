@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 import styles from "./overview.module.css";
 import { useTheme } from "next-themes"; // Import useTheme hook
+import { motion } from "framer-motion";
+import { HeroHighlight, Highlight } from "../../components/ui/hero-highlight";
 
 // Import CSS module
 
@@ -17,7 +19,30 @@ const Overview = () => {
       <div className={styles.container}>
 
         <div className={styles.section}>
-          <div className={styles.imageContainer}>
+          <HeroHighlight>
+      <motion.h1
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: [20, -5, 0],
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.4, 0.0, 0.2, 1],
+        }}
+        className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+      >
+        <Highlight className="text-black dark:text-white">
+          Overview
+                  </Highlight>
+<div className=" text-lg pt-5">
+explore MoA's pivotal role in drug development and therapy, shaping pharmaceutical science's core principles</div>
+      </motion.h1>
+    </HeroHighlight>
+          {/* <div className={styles.imageContainer}>
             <Image
               src="/images/5132283.jpg"
               width={500}
@@ -25,7 +50,7 @@ const Overview = () => {
               className={styles.images}
               alt="image"
             ></Image>
-          </div>
+          </div> */}
           <h2 className={styles.heading}>Intro / Business Problem</h2>
           <p className={styles.paragraph}>
             In the past, scientists derived drugs from natural products or were

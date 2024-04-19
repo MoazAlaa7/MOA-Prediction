@@ -89,3 +89,27 @@
 .sectioncontainer {
   margin-top: 2rem; /* Adjust as needed */
 }
+/* dataPage.module.css */
+
+/* Normal state styles */
+.link {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid transparent;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Hover state styles */
+.link:hover,
+.link.selected {
+  background-color:#0070f3; /* Example hover background color */
+  color: #fff; /* Example text color on hover */
+}
+

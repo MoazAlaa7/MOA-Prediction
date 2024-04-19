@@ -16,13 +16,14 @@ function Research() {
   ));
 
     return (
-      <div className=' pt-36'>
+      <div>
         <Header />
+      <div className=' '>
         <div className='mx-auto  max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-4'>
 
           {postPreviews}
         </div>
-      </div>
+      </div></div>
     );
   }
 
