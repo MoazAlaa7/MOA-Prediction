@@ -62,7 +62,8 @@ function Sidebar() {
           </nav>
         </header>
         <main className={`flex-1 grid min-h-[calc(100vh - 1rem)]  gap-4 p-4 md:grid-cols-[250px_1fr] md:gap-6 lg:gap-8 md:p-6 ${styles['main-content']}`}>       {/* Content based on selection */}
-          {selectedContent === "sectionOne" && <SectionOne />}
+          {selectedContent === "sectionOne" && 
+          <SectionOne />}
           {selectedContent === "sectionTwo" && <SectionTwo />}
           {selectedContent === "sectionThree" && <SectionThree />}
           {selectedContent === "sectionFour" && <SectionFour />}
