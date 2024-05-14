@@ -49,9 +49,7 @@ const ActionButtons = () => {
           <ThemeSwitch />
         </div>
 
-        <Button className="text-md" variant="ghost">
-          Sign in
-        </Button>
+   
 
         <Link href="../../Prediction">
           <Button className="text-md bg-blue-500">Get Started</Button>

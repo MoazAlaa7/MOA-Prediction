@@ -100,3 +100,28 @@
     padding-top: 4rem;
    
 }
+.previewContainer {
+  margin-top: 20px;
+}
+
+.scrollableTable {
+  max-height: 300px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+/* Optional: Style the table */
+.scrollableTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scrollableTable th,
+.scrollableTable td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.scrollableTable th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}

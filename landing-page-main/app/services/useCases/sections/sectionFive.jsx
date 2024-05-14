@@ -104,69 +104,78 @@ function SectionFive() {
           </thead>
           <tbody className=''>
             <tr className="border-b ">
-              <td className="px-4 py-3">1. Paclitaxel
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">2. Carboplatin
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">3. Cisplatin
+              <td className="px-4 py-3">1. Atenolol
 
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">4. Doxorubicin
+              <td className="px-4 py-3">2. Lisinopril
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">5. Methotrexate
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">6. Tamoxifen
+              <td className="px-4 py-3">3. Metoprolol
+
 
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">7. Imatinib
+              <td className="px-4 py-3">4. Amlodipine
 
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">8. Rituximab
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">9. Trastuzumab
+              <td className="px-4 py-3">5. Hydrochlorothiazide
 
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">10. Gefitinib
+              <td className="px-4 py-3">6. Warfarin
 
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">11. Erlotinib
+              <td className="px-4 py-3">7. Clopidogrel
+
 
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">12. Bevacizumab
+              <td className="px-4 py-3">8. Digoxin
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">13. Vinblastine
+              <td className="px-4 py-3">9. Enalapril
+
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">14. Vincristine
+              <td className="px-4 py-3">10. Furosemide
+
+
+
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">15. Bortezomib
+              <td className="px-4 py-3">11. Losartan
+
+
+</td>
+            </tr>
+            <tr className="border-b">
+              <td className="px-4 py-3">12. Nitroglycerin
+</td>
+            </tr>
+            <tr className="border-b">
+              <td className="px-4 py-3">13. Rivaroxaban
+</td>
+            </tr>
+            <tr className="border-b">
+              <td className="px-4 py-3">14. Simvastatin
+
+</td>
+            </tr>
+            <tr className="border-b">
+              <td className="px-4 py-3">15. Amiodarone
 </td>
             </tr>
           </tbody>
@@ -180,57 +189,61 @@ function SectionFive() {
           </thead>
           <tbody>
             <tr className="border-b">
-              <td className="px-4 py-3">16. Erlotinib</td>
+              <td className="px-4 py-3">16. Atorvastatin</td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">17. Trastuzumab
+              <td className="px-4 py-3">17. Rosuvastatin
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">18. Panitumumab
+              <td className="px-4 py-3">18. Ezetimibe
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">19. Dasatinib</td>
+              <td className="px-4 py-3">19. Lovastatin</td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">20. Nivolumab</td>
+              <td className="px-4 py-3">20. Pravastatin</td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">21. Pembrolizumab</td>
+              <td className="px-4 py-3">21. Diltiazem</td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">22. Abemaciclib
+              <td className="px-4 py-3">22. Verapamil
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">23. Alectinib
+              <td className="px-4 py-3">23. Isosorbide mononitrate
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">24. Olaparib</td>
+              <td className="px-4 py-3">24. Isosorbide dinitrate</td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">25. Enzalutamide
+              <td className="px-4 py-3">25. Nitroprusside
+
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">26. Palbociclib
+              <td className="px-4 py-3">26. Ivabradine
+
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">27. Ribociclib
+              <td className="px-4 py-3">27. Sacubitril/valsartan
+
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">28. Ibrutinib</td>
+              <td className="px-4 py-3">28. Hydralazine</td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">29. Venetoclax
+              <td className="px-4 py-3">29. Nitroglycerin
 </td>
             </tr>
             <tr className="border-b">
-              <td className="px-4 py-3">30. Trifluridine/tipiracil
+              <td className="px-4 py-3">30. Ranolazine
+
 </td>
             </tr>
           </tbody>

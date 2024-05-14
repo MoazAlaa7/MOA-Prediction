@@ -110,148 +110,117 @@ function SectionSix() {
         </div> */}
       </header>
     <br />
-      <div className="grid md:grid-cols-2 gap-4 bg-gray-100 text-lg ">
-      <div className="border rounded-lg overflow-hidden">
-        <table className="w-full ">
-          <thead>
-            <tr>
-            </tr>
-          </thead>
-          <tbody className=''>
-            <tr className="border-b ">
-              <td className="px-4 py-3">1. Paclitaxel
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">2. Carboplatin
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">3. Cisplatin
+<div className="grid md:grid-cols-2 gap-4 bg-gray-100 text-lg">
+  <div className="border rounded-lg overflow-hidden">
+    <table className="w-full">
+      <thead>
+        <tr></tr>
+      </thead>
+      <tbody>
+        <tr className="border-b">
+          <td className="px-4 py-3">1. Levothyroxine</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">2. Insulin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">3. Metformin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">4. Hydrocortisone</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">5. Thyroid Hormone Replacement</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">6. Glipizide</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">7. Pioglitazone</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">8. Exenatide</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">9. Desmopressin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">10. Testosterone</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">11. Estrogen</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">12. Progesterone</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">13. Tamoxifen</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">14. Leuprolide</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">15. Octreotide</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div className="border rounded-lg overflow-hidden">
+    <table className="w-full">
+      <thead>
+        <tr></tr>
+      </thead>
+      <tbody>
+        <tr className="border-b">
+          <td className="px-4 py-3">16. Exenatide</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">17. Liraglutide</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">18. Empagliflozin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">19. Dapagliflozin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">20. Canagliflozin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">21. Liraglutide</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">22. Linagliptin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">23. Sitagliptin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">24. Saxagliptin</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">25. Nateglinide</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">26. Repaglinide</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">27. Acarbose</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">28. Miglitol</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">29. Rosiglitazone</td>
+        </tr>
+        <tr className="border-b">
+          <td className="px-4 py-3">30. Pioglitazone</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">4. Doxorubicin
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">5. Methotrexate
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">6. Tamoxifen
-
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">7. Imatinib
-
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">8. Rituximab
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">9. Trastuzumab
-
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">10. Gefitinib
-
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">11. Erlotinib
-
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">12. Bevacizumab
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">13. Vinblastine
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">14. Vincristine
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">15. Bortezomib
-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="border rounded-lg overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b">
-              <td className="px-4 py-3">16. Erlotinib</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">17. Trastuzumab
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">18. Panitumumab
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">19. Dasatinib</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">20. Nivolumab</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">21. Pembrolizumab</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">22. Abemaciclib
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">23. Alectinib
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">24. Olaparib</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">25. Enzalutamide
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">26. Palbociclib
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">27. Ribociclib
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">28. Ibrutinib</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">29. Venetoclax
-</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-3">30. Trifluridine/tipiracil
-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
       <br />
       <br />
       <br />
