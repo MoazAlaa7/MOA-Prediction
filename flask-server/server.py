@@ -19,11 +19,11 @@ preview_data = None
 def load_models():
     global encoderGene, encoderCell, sub
     if encoderGene is None:
-        encoderGene = load_model('F:/final-proj/flask-server/encoder+xgboost_gene_features.h5')
+        encoderGene = load_model('./models/encoder+xgboost_gene_features.h5')
     if encoderCell is None:
-        encoderCell = load_model('F:/final-proj/flask-server/encoder+xgboost_cell_features.h5')
+        encoderCell = load_model('./models/encoder+xgboost_cell_features.h5')
     if sub is None:
-        sub = pd.read_csv('F:/final-proj/flask-server/sample_submission.csv')
+        sub = pd.read_csv('./models/sample_submission.csv')
 
 def preprocessData(inputData):
     load_models()
@@ -65,7 +65,7 @@ def upload_file():
 
     new_data = preprocessData(data)
 
-    model = pickle.load(open('F:/final-proj/flask-server/xgboost+autoencoder.pkl', 'rb'))
+    model = pickle.load(open('./models/xgboost+autoencoder.pkl', 'rb'))
     prediction = model.predict_proba(new_data)
     prediction = np.array(prediction)[:, :, 1].T
 
