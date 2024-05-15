@@ -12,20 +12,20 @@ const acceptableCSVFileTypes =
 
 const customStyles = {
   content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    maxHeight: '60%',
-    overflowY: 'auto',
-    width: '60%',
-    padding: '20px',
-    borderRadius: '10px',
-    backgroundColor: '#fdfdfd',
-    color: '#1f2937',
-    boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)',
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    maxHeight: "60%",
+    overflowY: "auto",
+    width: "60%",
+    padding: "20px",
+    borderRadius: "10px",
+    backgroundColor: "#fdfdfd",
+    color: "#1f2937",
+    boxShadow: "0 10px 15px rgba(0, 0, 0, 0.1)",
   },
 };
 
@@ -39,15 +39,14 @@ const Prediction = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
- const shouldDisableUpload = () => {
-  return (
-    requirementsMet !== "yes" ||
-    firstRowColumnNames !== "yes" ||
-    !filePathInputValue ||
-    loading
-  );
-};
-
+  const shouldDisableUpload = () => {
+    return (
+      requirementsMet !== "yes" ||
+      firstRowColumnNames !== "yes" ||
+      !filePathInputValue ||
+      loading
+    );
+  };
 
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
@@ -63,11 +62,15 @@ const Prediction = () => {
     formData.append("file", filePathInputValue);
 
     try {
-      const response = await axios.post("http://localhost:5000/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:5000/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       if (response.data.file_ready) {
         setFileReady(true);
         fetchPreviewData();
@@ -129,7 +132,10 @@ const Prediction = () => {
         <thead>
           <tr>
             {headers.map((header, index) => (
-              <th key={index} className="py-2 px-4 border border-gray-200 dark:border-gray-700 bg-blue-500 text-white dark:bg-gray-700 dark:text-gray-300">
+              <th
+                key={index}
+                className="py-2 px-4 border border-gray-200 dark:border-gray-700 bg-blue-500 text-white dark:bg-gray-700 dark:text-gray-300"
+              >
                 {header}
               </th>
             ))}
@@ -137,9 +143,15 @@ const Prediction = () => {
         </thead>
         <tbody>
           {previewRows.map((row, rowIndex) => (
-            <tr key={rowIndex} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <tr
+              key={rowIndex}
+              className="hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
               {headers.map((header, colIndex) => (
-                <td key={colIndex} className="py-2 px-4 border border-gray-200 dark:border-gray-700">
+                <td
+                  key={colIndex}
+                  className="py-2 px-4 border border-gray-200 dark:border-gray-700"
+                >
                   {row[header]}
                 </td>
               ))}
@@ -151,7 +163,9 @@ const Prediction = () => {
   };
 
   return (
-    <div className={` ${styles.padding_div} mx-auto px-4 rounded-lg shadow-lg dark:bg-indigo-950 `}>
+    <div
+      className={` ${styles.padding_div} mx-auto px-4 rounded-lg shadow-lg dark:bg-indigo-950 `}
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-gray-200 dark:bg-indigo-950 p-6 rounded-lg">
           <h2 className="text-2xl font-semibold mb-8">Requirements</h2>
@@ -184,20 +198,26 @@ const Prediction = () => {
               />
             </div>
             <div className="mb-6">
-              <label className="block mt-4 mb-4">Are all requirements met?</label>
+              <label className="block mt-4 mb-4">
+                Are all requirements met?
+              </label>
               <ComboboxDemo
                 selectedValue={requirementsMet}
                 onSelect={(value) => setRequirementsMet(value)}
               />
             </div>
             <div className="mb-6">
-              <label className="block mt-4 mb-4">Is the first row column names?</label>
+              <label className="block mt-4 mb-4">
+                Is the first row column names?
+              </label>
               <ComboboxDemo
                 selectedValue={firstRowColumnNames}
                 onSelect={(value) => setFirstRowColumnNames(value)}
               />
             </div>
-            {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
+            {errorMessage && (
+              <div className="text-red-500 mb-4">{errorMessage}</div>
+            )}
             {!fileReady ? (
               <Button type="submit" disabled={shouldDisableUpload() || loading}>
                 {loading ? "Loading..." : "Submit"}
@@ -218,13 +238,22 @@ const Prediction = () => {
         contentLabel="Prediction Preview"
       >
         <h2 className="text-2xl font-semibold mb-4">Prediction Preview</h2>
-      <h3 className="text-sm mb-2" style={{ fontStyle: 'italic', color: '#718096' }}>Showing only 10 rows</h3>        <div className="overflow-x-auto">
-          {renderPreviewTable()}
-        </div>
-        <button onClick={closeModal} className="mt-4 p-2 bg-blue-500 text-white rounded">Close</button>
+        <h3
+          className="text-sm mb-2"
+          style={{ fontStyle: "italic", color: "#718096" }}
+        >
+          Showing only 10 rows
+        </h3>{" "}
+        <div className="overflow-x-auto">{renderPreviewTable()}</div>
+        <button
+          onClick={closeModal}
+          className="mt-4 p-2 bg-blue-500 text-white rounded"
+        >
+          Close
+        </button>
       </Modal>
     </div>
   );
 };
 
-// export default Prediction;
+export default Prediction;
