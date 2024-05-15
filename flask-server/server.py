@@ -9,7 +9,7 @@ from tensorflow.keras.models import load_model
 from io import StringIO
 
 app = Flask(__name__)
-CORS(app)   
+CORS(app)
 
 encoderGene = None
 encoderCell = None
@@ -28,8 +28,6 @@ def load_models():
 def preprocessData(inputData):
     load_models()
 
-    load_models()
-
     le = LabelEncoder()
     inputData['cp_type'] = le.fit_transform(inputData['cp_type'])
     inputData['cp_time'] = le.fit_transform(inputData['cp_time'])
@@ -43,8 +41,6 @@ def preprocessData(inputData):
         if i.startswith('c-'):
             cell_features.append(i)
 
-    test_gene_features = encoderGene.predict(inputData[gene_features])
-    test_cell_features = encoderCell.predict(inputData[cell_features])
     test_gene_features = encoderGene.predict(inputData[gene_features])
     test_cell_features = encoderCell.predict(inputData[cell_features])
 
@@ -73,7 +69,6 @@ def upload_file():
     prediction = model.predict_proba(new_data)
     prediction = np.array(prediction)[:, :, 1].T
 
-    print('FORMAT OF THE PREDICTED OUTPUT : ', type(prediction)) 
     print('FORMAT OF THE PREDICTED OUTPUT : ', type(prediction)) 
     print('DONE PREDICTION')
     end_time = time.time()

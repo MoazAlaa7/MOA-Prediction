@@ -23,6 +23,6 @@
       
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/ui/comboBox.jsx", "app/comp/data/page.tsx", "app/comp/problem/page.tsx", "app/comp/model/page.tsx", "app/homePage/first-section/page.jsx", "app/faq/Page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/ui/comboBox.jsx", "app/comp/data/page.tsx", "app/comp/problem/page.tsx", "app/comp/model/page.tsx", "app/homePage/first-section/page.jsx", "app/faq/Page.jsx", "app/Prediction/prediction-results/PredictionResults.jsx"],
   "exclude": ["node_modules"]
 }
