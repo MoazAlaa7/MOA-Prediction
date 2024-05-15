@@ -1,0 +1,105 @@
+.resultsContainer {
+  max-width: 1600px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fdfdfd;
+  color: #1f2937;
+}
+
+.flex {
+  display: flex;
+}
+
+.flexRow {
+  flex-direction: row;
+}
+
+.w1_4 {
+  width: 15%;
+}
+
+.w3_4 {
+  width: 85%;
+}
+
+.bgGray200 {
+  background-color: #edf2f7;
+}
+
+.p6 {
+  padding: 1.5rem;
+}
+
+.roundedLg {
+  border-radius: 0.75rem;
+}
+
+.shadowLg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.mb4 {
+  margin-bottom: 1rem;
+}
+
+.text2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.fontSemibold {
+  font-weight: 600;
+}
+
+.mb2 {
+  margin-bottom: 0.5rem;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.overflowXAuto {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.th,
+.td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.th {
+  background-color: #4299e1;
+  color: white;
+}
+
+.td {
+  background-color: white;
+}
+
+.trHover:hover {
+  background-color: #f7fafc;
+}
+
+.thLight {
+  background-color: #4299e1;
+  color: white;
+}
+
+.tdLight {
+  background-color: white;
+  color: #1f2937;
+}

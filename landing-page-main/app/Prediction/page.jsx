@@ -1,8 +1,9 @@
+// pages/prediction/page.jsx
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
-import Modal from "react-modal";
+import { useRouter } from "next/navigation";
 import { ComboboxDemo } from "@/components/ui/comboBox";
 import styles from "./prediction.module.css";
 import { Button } from "@/components/ui/button";
@@ -10,34 +11,14 @@ import { Button } from "@/components/ui/button";
 const acceptableCSVFileTypes =
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, .csv";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    maxHeight: "60%",
-    overflowY: "auto",
-    width: "60%",
-    padding: "20px",
-    borderRadius: "10px",
-    backgroundColor: "#fdfdfd",
-    color: "#1f2937",
-    boxShadow: "0 10px 15px rgba(0, 0, 0, 0.1)",
-  },
-};
-
 const Prediction = () => {
   const [requirementsMet, setRequirementsMet] = useState("");
   const [firstRowColumnNames, setFirstRowColumnNames] = useState("");
   const [filePathInputValue, setFilePathInputValue] = useState(null);
   const [loading, setLoading] = useState(false);
   const [fileReady, setFileReady] = useState(false);
-  const [previewData, setPreviewData] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const router = useRouter();
 
   const shouldDisableUpload = () => {
     return (
@@ -73,9 +54,12 @@ const Prediction = () => {
       );
       if (response.data.file_ready) {
         setFileReady(true);
-        fetchPreviewData();
+        setLoading(false);
+        router.push("/results"); // Navigate to the results page
+      } else {
+        setLoading(false);
+        setErrorMessage("File processing failed. Please try again.");
       }
-      setLoading(false);
     } catch (error) {
       console.error("Error uploading file:", error);
       setErrorMessage("Error uploading file. Please try again.");
@@ -83,88 +67,9 @@ const Prediction = () => {
     }
   };
 
-  const fetchPreviewData = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/preview");
-      setPreviewData(response.data);
-      openModal();
-    } catch (error) {
-      console.error("Error fetching preview data:", error);
-      setErrorMessage("Error fetching preview data. Please try again.");
-    }
-  };
-
-  const handleDownload = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/download", {
-        responseType: "blob",
-      });
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "prediction.csv");
-      document.body.appendChild(link);
-      link.click();
-    } catch (error) {
-      console.error("Error downloading file:", error);
-      setErrorMessage("Error downloading file. Please try again.");
-    }
-  };
-
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
-  const renderPreviewTable = () => {
-    if (!previewData || previewData.length === 0) {
-      return null;
-    }
-
-    const headers = Object.keys(previewData[0]);
-    const previewRows = previewData.slice(0, 10); // Display only the first 10 rows
-
-    return (
-      <table className="min-w-full bg-white dark:bg-gray-800 border-collapse border border-gray-200  dark:border-gray-700">
-        <thead>
-          <tr>
-            {headers.map((header, index) => (
-              <th
-                key={index}
-                className="py-2 px-4 border border-gray-200 dark:border-gray-700 bg-blue-500 text-white dark:bg-gray-700 dark:text-gray-300"
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {previewRows.map((row, rowIndex) => (
-            <tr
-              key={rowIndex}
-              className="hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              {headers.map((header, colIndex) => (
-                <td
-                  key={colIndex}
-                  className="py-2 px-4 border border-gray-200 dark:border-gray-700"
-                >
-                  {row[header]}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  };
-
   return (
     <div
-      className={` ${styles.padding_div} mx-auto px-4 rounded-lg shadow-lg dark:bg-indigo-950 `}
+      className={`${styles.padding_div} mx-auto px-4 rounded-lg shadow-lg dark:bg-indigo-950`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-gray-200 dark:bg-indigo-950 p-6 rounded-lg">
@@ -218,40 +123,12 @@ const Prediction = () => {
             {errorMessage && (
               <div className="text-red-500 mb-4">{errorMessage}</div>
             )}
-            {!fileReady ? (
-              <Button type="submit" disabled={shouldDisableUpload() || loading}>
-                {loading ? "Loading..." : "Submit"}
-              </Button>
-            ) : (
-              <>
-                <Button onClick={handleDownload}>Download Results</Button>
-              </>
-            )}
+            <Button type="submit" disabled={shouldDisableUpload() || loading}>
+              {loading ? "Loading..." : "Submit"}
+            </Button>
           </form>
         </div>
       </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Prediction Preview"
-      >
-        <h2 className="text-2xl font-semibold mb-4">Prediction Preview</h2>
-        <h3
-          className="text-sm mb-2"
-          style={{ fontStyle: "italic", color: "#718096" }}
-        >
-          Showing only 10 rows
-        </h3>{" "}
-        <div className="overflow-x-auto">{renderPreviewTable()}</div>
-        <button
-          onClick={closeModal}
-          className="mt-4 p-2 bg-blue-500 text-white rounded"
-        >
-          Close
-        </button>
-      </Modal>
     </div>
   );
 };
