@@ -8,6 +8,12 @@ from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.models import load_model
 from io import StringIO
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+from io import BytesIO
+import base64
+from flask import send_file
+
 app = Flask(__name__)
 CORS(app)
 
@@ -15,6 +21,52 @@ encoderGene = None
 encoderCell = None
 sub = None
 preview_data = None
+
+def generate_top_20(pred_results):
+    global sub
+
+    x_axis = list(sub.columns.values)
+    sig_id_values = x_axis[1:]
+    count_of_target = sub.iloc[:, 1:].sum().values
+    dct = dict(zip(sig_id_values, count_of_target))
+    sorted_dict = dict(sorted(dct.items(), key=lambda i: i[1], reverse=True))
+
+    plt.figure(figsize=(15, 10))
+    sns.barplot(x=list(sorted_dict.values())[:20], y=list(sorted_dict.keys())[:20], palette="viridis")
+
+    plt.title('COUNT OF TARGET VS TARGET FEATURES', fontsize=20)
+    plt.xlabel('COUNT OF TARGET', fontsize=15)
+    plt.ylabel('TARGET FEATURES', fontsize=15)
+
+    img = BytesIO()
+    plt.savefig(img, format='svg')
+    img.seek(0)
+    plt.close()
+    
+    return base64.b64encode(img.getvalue()).decode('utf-8')
+
+def generate_lowest_20(pred_results):
+    global sub
+
+    x_axis = list(sub.columns.values)
+    sig_id_values = x_axis[1:]
+    count_of_target = sub.iloc[:, 1:].sum().values
+    dct = dict(zip(sig_id_values, count_of_target))
+    sorted_dict = dict(sorted(dct.items(), key=lambda i: i[1], reverse=True))
+
+    plt.figure(figsize=(15, 10))
+    sns.barplot(x=list(sorted_dict.values())[-20:], y=list(sorted_dict.keys())[-20:], palette="coolwarm")
+    
+    plt.title('COUNT OF TARGET VS TARGET FEATURES', fontsize=20)
+    plt.xlabel('COUNT OF TARGET', fontsize=15)
+    plt.ylabel('TARGET FEATURES', fontsize=15)
+    
+    img = BytesIO()
+    plt.savefig(img, format='svg')
+    img.seek(0)
+    plt.close()
+
+    return base64.b64encode(img.getvalue()).decode('utf-8')
 
 def load_models():
     global encoderGene, encoderCell, sub
@@ -76,6 +128,9 @@ def upload_file():
 
     sub.iloc[:, 1:]  = prediction
 
+    # generate_top_20(sub);
+    # generate_lowest_20(sub);
+
     # Storing preview data temporarily
     preview_data = sub.to_dict(orient='records')
 
@@ -100,6 +155,18 @@ def get_preview_data():
         return jsonify({"message": "No preview data available"})
     else:
         return jsonify(preview_data)
+
+@app.route('/top_20_svg', methods=['GET'])
+def get_top_20_svg():
+    global sub
+    svg_data = generate_top_20(sub)
+    return jsonify({"svg": svg_data})
+
+@app.route('/lowest_20_svg', methods=['GET'])
+def get_lowest_20_svg():
+    global sub
+    svg_data = generate_lowest_20(sub)
+    return jsonify({"svg": svg_data})
 
 if __name__ == '__main__': 
     app.run(debug=True)
