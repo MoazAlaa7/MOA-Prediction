@@ -8,11 +8,15 @@ from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.models import load_model
 from io import StringIO
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-from io import BytesIO
-import base64
+
 from flask import send_file
+from flask import send_from_directory
+import os
+
+import plotly.express as px
+from plotly.io import to_json
+import seaborn as sns
+import plotly.graph_objects as go
 
 app = Flask(__name__)
 CORS(app)
@@ -21,6 +25,109 @@ encoderGene = None
 encoderCell = None
 sub = None
 preview_data = None
+dataset = None
+dataset_details = None
+
+def visualizeData(name_column):
+    global dataset
+
+    gene_features = []
+    cell_features = []
+    for i in dataset.columns:
+        if i.startswith('g-'):
+            gene_features.append(i)
+        if i.startswith('c-'):
+            cell_features.append(i)
+
+    if name_column == 'cp_type':
+        cp_type_percentages = (dataset['cp_type'].value_counts()*100.0 /len(dataset))
+
+        colors = ['#1f77b4', '#ff7f0e']
+        data=[
+            go.Bar(name='cp_type', x=cp_type_percentages.index, y=cp_type_percentages.values, 
+                marker_color=colors, text=[f'{val:.1f}%' for val in cp_type_percentages.values],
+                textposition='auto')
+        ]
+        fig = go.Figure(data)
+        fig.update_layout(
+            title_text='Type of Treatment',
+            xaxis_title='cp_type',
+            yaxis_title='% Drug',
+            barmode='stack'
+        )
+        return to_json(fig)
+
+    elif name_column == 'cp_time':
+        cp_time_percentages = dataset['cp_time'].value_counts()*100.0 /len(dataset)
+
+        colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
+        data=[
+            go.Bar(name='cp_time', x=cp_time_percentages.index, y=cp_time_percentages.values, 
+                text=[f'{val:.2f}%' for val in cp_time_percentages.values],
+                textposition='auto', marker_color=colors)
+        ]
+        fig = go.Figure(data)
+        fig.update_layout(
+            title_text='Time Duration of Treatment',
+            xaxis_title='Time',
+            yaxis_title='% Treatment',
+            barmode='stack'
+        )
+        return to_json(fig)
+
+    elif name_column == 'cp_dose':
+        cp_dose_percentages = dataset['cp_dose'].value_counts()*100.0 /len(dataset)
+
+        colors = ['#1f77b4', '#ff7f0e']
+        data=[
+            go.Bar(name='cp_dose', x=cp_dose_percentages.index, y=cp_dose_percentages.values, 
+                text=[f'{val:.2f}%' for val in cp_dose_percentages.values],
+                textposition='auto', marker_color=colors)
+        ]
+        fig = go.Figure(data)
+        fig.update_layout(
+            title_text='Doses of Drugs',
+            xaxis_title='Dose',
+            yaxis_title='% Treatment',
+            barmode='stack'
+        )
+        return to_json(fig)
+
+    elif name_column == 'gene_expression':
+        data_list = [dataset[feature] for feature in gene_features]
+
+        colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+        fig = go.Figure()
+        for i, feature in enumerate(gene_features):
+            fig.add_trace(go.Histogram(x=data_list[i], name=feature, marker_color=colors[i % len(colors)]))
+        fig.update_layout(
+            title_text='Distribution of all Gene Features',
+            xaxis_title_text='Value', 
+            yaxis_title_text='Count', 
+            bargap=0.2, 
+            bargroupgap=0.1, 
+            barmode='overlay', 
+        )
+        fig.update_traces(opacity=0.75)
+        return to_json(fig)
+
+    elif name_column == 'cell_viability':
+        data_list = [dataset[feature] for feature in cell_features]
+
+        colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+        fig = go.Figure()
+        for i, feature in enumerate(cell_features):
+            fig.add_trace(go.Histogram(x = data_list[i], name = feature, marker_color = colors[i % len(colors)]))
+        fig.update_layout(
+            title_text='Distribution of all Cell Features', 
+            xaxis_title_text='Value', 
+            yaxis_title_text='Count', 
+            bargap=0.2, 
+            bargroupgap=0.1, 
+            barmode='overlay', 
+        )
+        fig.update_traces(opacity=0.75)
+        return to_json(fig)
 
 def generate_top_20(pred_results):
     global sub
@@ -31,19 +138,22 @@ def generate_top_20(pred_results):
     dct = dict(zip(sig_id_values, count_of_target))
     sorted_dict = dict(sorted(dct.items(), key=lambda i: i[1], reverse=True))
 
-    plt.figure(figsize=(15, 10))
-    sns.barplot(x=list(sorted_dict.values())[:20], y=list(sorted_dict.keys())[:20], palette="viridis")
+    colors = sns.color_palette("hsv", 20)
+    data=[
+        go.Bar(y=list(sorted_dict.keys())[:20], x=list(sorted_dict.values())[:20], orientation='h', marker_color = colors.as_hex())
+    ]
+    fig1 = go.Figure(data)
+    fig1.update_layout(
+        title='OBSERVING THE TOP 20 TARGET APPEARED IN THE DATASET OR SAMPLE',
+        xaxis_title='COUNT OF TARGET',
+        yaxis_title='TARGET FEATURES',
+        yaxis=dict(autorange="reversed"),
+        autosize=False,
+        width=900,
+        height=600,
+    )
 
-    plt.title('COUNT OF TARGET VS TARGET FEATURES', fontsize=20)
-    plt.xlabel('COUNT OF TARGET', fontsize=15)
-    plt.ylabel('TARGET FEATURES', fontsize=15)
-
-    img = BytesIO()
-    plt.savefig(img, format='svg')
-    img.seek(0)
-    plt.close()
-    
-    return base64.b64encode(img.getvalue()).decode('utf-8')
+    return to_json(fig1)
 
 def generate_lowest_20(pred_results):
     global sub
@@ -54,19 +164,22 @@ def generate_lowest_20(pred_results):
     dct = dict(zip(sig_id_values, count_of_target))
     sorted_dict = dict(sorted(dct.items(), key=lambda i: i[1], reverse=True))
 
-    plt.figure(figsize=(15, 10))
-    sns.barplot(x=list(sorted_dict.values())[-20:], y=list(sorted_dict.keys())[-20:], palette="coolwarm")
+    colors = sns.color_palette("hsv", 20)
+    data=[
+        go.Bar(y=list(sorted_dict.keys())[-20:], x=list(sorted_dict.values())[-20:], orientation='h', marker_color = colors.as_hex())
+    ]
+    fig2 = go.Figure(data)
+    fig2.update_layout(
+        title='OBSERVING THE LOWEST 20 TARGET APPEARED IN THE DATASET OR SAMPLE',
+        xaxis_title='COUNT OF TARGET',
+        yaxis_title='TARGET FEATURES',
+        yaxis=dict(autorange="reversed"),
+        autosize=False,
+        width=900,
+        height=600,
+    )
     
-    plt.title('COUNT OF TARGET VS TARGET FEATURES', fontsize=20)
-    plt.xlabel('COUNT OF TARGET', fontsize=15)
-    plt.ylabel('TARGET FEATURES', fontsize=15)
-    
-    img = BytesIO()
-    plt.savefig(img, format='svg')
-    img.seek(0)
-    plt.close()
-
-    return base64.b64encode(img.getvalue()).decode('utf-8')
+    return to_json(fig2)
 
 def load_models():
     global encoderGene, encoderCell, sub
@@ -103,7 +216,7 @@ def preprocessData(inputData):
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    global preview_data
+    global preview_data, dataset_details, dataset
     if request.method == 'POST':
         file = request.files['file']
 
@@ -111,7 +224,19 @@ def upload_file():
         print("No file 🚩🚩🚩🚩")
         return "No file"
 
-    data  = pd.read_csv(file, delimiter = ',')
+    dataset_details = [
+        {"Item": "Dataset Name", "Value": file.filename},
+        {"Item": "Data Source", "Value": "CSV File"},
+    ]
+
+    data = pd.read_csv(file, delimiter=',')
+    dataset = data.copy()
+    
+    dataset_details.extend([
+        {"Item": "Total Rows", "Value": data.shape[0]},
+        {"Item": "Total Columns", "Value": data.shape[1]},
+        {"Item": "Total Data Points", "Value": data.shape[0] * data.shape[1]}
+    ])
 
     start_time = time.time()
 
@@ -128,13 +253,18 @@ def upload_file():
 
     sub.iloc[:, 1:]  = prediction
 
-    # generate_top_20(sub);
-    # generate_lowest_20(sub);
-
     # Storing preview data temporarily
     preview_data = sub.to_dict(orient='records')
 
     return jsonify({"file_ready": True})
+
+@app.route('/dataset_details', methods=['GET'])
+def get_dataset_details():
+    global dataset_details
+    if dataset_details is None:
+        return jsonify({"message": "No dataset details available"})
+    else:
+        return jsonify(dataset_details)
 
 @app.route('/download', methods=['GET'])
 def download_file():
@@ -156,17 +286,28 @@ def get_preview_data():
     else:
         return jsonify(preview_data)
 
-@app.route('/top_20_svg', methods=['GET'])
-def get_top_20_svg():
+@app.route('/top_20_json', methods=['GET'])
+def get_top_20_json():
     global sub
-    svg_data = generate_top_20(sub)
-    return jsonify({"svg": svg_data})
+    json_data = generate_top_20(sub)
+    return jsonify({"json": json_data})
 
-@app.route('/lowest_20_svg', methods=['GET'])
-def get_lowest_20_svg():
+@app.route('/lowest_20_json', methods=['GET'])
+def get_lowest_20_json():
     global sub
-    svg_data = generate_lowest_20(sub)
-    return jsonify({"svg": svg_data})
+    json_data = generate_lowest_20(sub)
+    return jsonify({"json": json_data})
+
+@app.route('/visualize', methods=['GET'])
+def visualize():
+    name_column = request.args.get('name_column')
+    graph_json = None
+    graph_json = visualizeData(name_column)    
+    if graph_json:
+        return jsonify({"json": graph_json})
+    else:
+        return jsonify({'error': 'Column not found'}), 404
 
 if __name__ == '__main__': 
     app.run(debug=True)
+
