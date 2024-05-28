@@ -2,14 +2,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
+import Plot from "react-plotly.js";
 import styles from "./results.module.css";
 
 const Results = () => {
   const [previewData, setPreviewData] = useState(null);
   const [activeTab, setActiveTab] = useState("preview");
-  const [top20SVG, setTop20SVG] = useState(null);
-  const [lowest20SVG, setLowest20SVG] = useState(null);
-  const [isSVGFetched, setIsSVGFetched] = useState(false);
+  const [top20JSON, setTop20JSON] = useState(null);
+  const [lowest20JSON, setLowest20JSON] = useState(null);
+  const [isJSONFetched, setIsJSONFetched] = useState(false);
+  const [datasetDetails, setDatasetDetails] = useState(null);
+  const [columnName, setColumnName] = useState("");
+  const [visualizationJSON, setVisualizationJSON] = useState(null);
 
   useEffect(() => {
     const fetchPreviewData = async () => {
@@ -25,28 +29,44 @@ const Results = () => {
   }, []);
 
   useEffect(() => {
-    const fetchSVGs = async () => {
+    const fetchDatasetDetails = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/dataset_details"
+        );
+        setDatasetDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching dataset details:", error);
+      }
+    };
+    if (activeTab === "Data") {
+      fetchDatasetDetails();
+    }
+  }, [activeTab]);
+
+  useEffect(() => {
+    const fetchJSONs = async () => {
       try {
         const top20Response = await axios.get(
-          "http://localhost:5000/top_20_svg"
+          "http://localhost:5000/top_20_json"
         );
-        setTop20SVG(top20Response.data.svg);
+        setTop20JSON(JSON.parse(top20Response.data.json));
 
         const lowest20Response = await axios.get(
-          "http://localhost:5000/lowest_20_svg"
+          "http://localhost:5000/lowest_20_json"
         );
-        setLowest20SVG(lowest20Response.data.svg);
+        setLowest20JSON(JSON.parse(lowest20Response.data.json));
 
-        setIsSVGFetched(true);
+        setIsJSONFetched(true);
       } catch (error) {
-        console.error("Error fetching SVGs:", error);
+        console.error("Error fetching JSONs:", error);
       }
     };
 
-    if (activeTab === "Insights" && !isSVGFetched) {
-      fetchSVGs();
+    if (activeTab === "Insights" && !isJSONFetched) {
+      fetchJSONs();
     }
-  }, [activeTab, isSVGFetched]);
+  }, [activeTab, isJSONFetched]);
 
   const handleDownload = async () => {
     try {
@@ -61,6 +81,17 @@ const Results = () => {
       link.click();
     } catch (error) {
       console.error("Error downloading file:", error);
+    }
+  };
+
+  const handleFetchVisualization = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/visualize?name_column=${columnName}`
+      );
+      setVisualizationJSON(JSON.parse(response.data.json));
+    } catch (error) {
+      console.error("Error fetching visualization:", error);
     }
   };
 
@@ -109,10 +140,56 @@ const Results = () => {
     );
   };
 
+  const renderDatasetDetails = () => {
+    if (!datasetDetails) {
+      return <p>No dataset details available.</p>;
+    }
+
+    return (
+      <div className={styles.datasetDetailsBox}>
+        <h2 className={`${styles.textXl} ${styles.fontSemibold} ${styles.mb4}`}>
+          Dataset Details
+        </h2>
+        <ul>
+          {datasetDetails.map(({ Item, Value }) => (
+            <li key={Item} className={styles.datasetDetailItem}>
+              <strong>{Item}:</strong> {Value}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
+  const visualizeDatasetDetails = () => {
+    return (
+      <div className={styles.datasetDetailsBox}>
+        {/* <div className={styles.visualizationBox}> */}
+        <h3 className={styles.textXl}>Enter Column Name for Visualization:</h3>
+        <input
+          type="text"
+          value={columnName}
+          onChange={(e) => setColumnName(e.target.value)}
+          className={styles.input}
+        />
+        <Button onClick={handleFetchVisualization} className="mt-4">
+          Visualize
+        </Button>
+        {/* </div> */}
+        {visualizationJSON && (
+          <Plot
+            data={visualizationJSON.data}
+            layout={visualizationJSON.layout}
+          />
+        )}
+      </div>
+    );
+  };
+
   const navItems = [
     { name: "Preview", tab: "preview" },
     { name: "Insights", tab: "Insights" },
-    { name: "Tab 3", tab: "tab3" },
+    { name: "Data", tab: "Data" },
   ];
 
   return (
@@ -137,7 +214,7 @@ const Results = () => {
             ))}
           </nav>
         </div>
-        <div className={styles.w3_4}>
+        <div className={`${styles.w3_4} ${styles.p6}`}>
           {activeTab === "preview" && (
             <div>
               <h2
@@ -145,7 +222,12 @@ const Results = () => {
               >
                 Prediction Preview
               </h2>
-              <h3 className={styles.italic}>Showing only 10 rows</h3>
+              <h3
+                className={`${styles.mb2} ${styles.italic}`}
+                style={{ color: "#718096" }}
+              >
+                Showing only 10 rows
+              </h3>
               <div className={styles.overflowXAuto}>{renderPreviewTable()}</div>
               <Button onClick={handleDownload} className="mt-4">
                 Download Full Results
@@ -165,37 +247,51 @@ const Results = () => {
               >
                 Some valuable insights about the prediction results
               </h3>
-              <div className="space-y-6">
-                {top20SVG && (
-                  <div className={styles.insightBox}>
-                    <h3
-                      className={`${styles.textXl} ${styles.fontSemibold} ${styles.mb2}`}
-                    >
-                      Top 20 Targets
-                    </h3>
-                    <div
-                      dangerouslySetInnerHTML={{ __html: atob(top20SVG) }}
-                      className={styles.insightImage}
-                    />
-                  </div>
-                )}
-                {lowest20SVG && (
-                  <div className={styles.insightBox}>
-                    <h3
-                      className={`${styles.textXl} ${styles.fontSemibold} ${styles.mb2}`}
-                    >
-                      Lowest 20 Targets
-                    </h3>
-                    <div
-                      dangerouslySetInnerHTML={{ __html: atob(lowest20SVG) }}
-                      className={styles.insightImage}
-                    />
-                  </div>
-                )}
-              </div>
+              {/* <div className="space-y-6"> */}
+              {top20JSON ? (
+                <div className={styles.insightBox}>
+                  <h3
+                    className={`${styles.textXl} ${styles.fontSemibold} ${styles.mb2}`}
+                  >
+                    Top 20 Targets
+                  </h3>
+                  <Plot data={top20JSON.data} layout={top20JSON.layout} />
+                </div>
+              ) : (
+                <p>Loading top 20 graph...</p>
+              )}
+              {lowest20JSON ? (
+                <div className={styles.insightBox}>
+                  <h3
+                    className={`${styles.textXl} ${styles.fontSemibold} ${styles.mb2}`}
+                  >
+                    Lowest 20 Targets
+                  </h3>
+                  <Plot data={lowest20JSON.data} layout={lowest20JSON.layout} />
+                </div>
+              ) : (
+                <p>Loading lowest 20 graph...</p>
+              )}
+              {/* </div> */}
             </div>
           )}
-          {activeTab === "tab3" && <div>Tab 3 Content</div>}
+          {activeTab === "Data" && (
+            <div>
+              <h2
+                className={`${styles.text2xl} ${styles.fontSemibold} ${styles.mb4}`}
+              >
+                Dataset Analysis
+              </h2>
+              <h3
+                className={`${styles.mb2} ${styles.italic}`}
+                style={{ color: "#718096" }}
+              >
+                Get a better grasp of your dataset
+              </h3>
+              {renderDatasetDetails()}
+              {visualizeDatasetDetails()}
+            </div>
+          )}
         </div>
       </div>
     </div>
