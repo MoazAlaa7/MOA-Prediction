@@ -7,6 +7,13 @@ import { useRouter } from "next/navigation";
 import { ComboboxDemo } from "@/components/ui/comboBox";
 import styles from "./prediction.module.css";
 import { Button } from "@/components/ui/button";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Backdrop } from "@mui/material";
+
+const steps = ["Initializing Servers", "Building Models", "Making Predictions"];
 
 const acceptableCSVFileTypes =
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, .csv";
@@ -18,6 +25,7 @@ const Prediction = () => {
   const [loading, setLoading] = useState(false);
   const [fileReady, setFileReady] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [activeStep, setActiveStep] = useState(0);
   const router = useRouter();
 
   const shouldDisableUpload = () => {
@@ -43,6 +51,10 @@ const Prediction = () => {
     formData.append("file", filePathInputValue);
 
     try {
+      setActiveStep(0); // Initializing Servers
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate server initialization delay
+
+      setActiveStep(1); // Building Models
       const response = await axios.post(
         "http://localhost:5000/upload",
         formData,
@@ -52,8 +64,13 @@ const Prediction = () => {
           },
         }
       );
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate model building delay
+
       if (response.data.file_ready) {
         setFileReady(true);
+        setActiveStep(2); // Making Predictions
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate prediction delay
+
         setLoading(false);
         router.push("/results"); // Navigate to the results page
       } else {
@@ -66,6 +83,11 @@ const Prediction = () => {
       setLoading(false);
     }
   };
+
+  // const handleCancel = () => {
+  //   setLoading(false);
+  //   setActiveStep(0);
+  // };
 
   return (
     <div
@@ -129,6 +151,41 @@ const Prediction = () => {
           </form>
         </div>
       </div>
+      <Backdrop
+        open={loading}
+        style={{
+          zIndex: 1000,
+          color: "#fff",
+          backdropFilter: "blur(5px)",
+        }}
+      >
+        <div
+          className={`${styles.stepperContainer} p-6 bg-white rounded-lg shadow-lg`}
+        >
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((label, index) => (
+              <Step key={label}>
+                <StepLabel
+                  StepIconProps={{ classes: { completed: "step-completed" } }}
+                >
+                  {activeStep === index && (
+                    <CircularProgress size={20} color="primary" />
+                  )}
+                  {label}
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          {/* <Button onClick={handleCancel} className="mt-4" color="secondary">
+            Cancel
+          </Button> */}
+        </div>
+      </Backdrop>
+      <style jsx global>{`
+        .step-completed {
+          color: green !important;
+        }
+      `}</style>
     </div>
   );
 };
