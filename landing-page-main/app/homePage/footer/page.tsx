@@ -7,7 +7,7 @@ const Footer = () => {
     mt-9
     
     ">
-       <div className="flex justify-evenly gap-4 p-4 ">
+       {/* <div className="flex justify-evenly gap-4 p-4 ">
         <div>
             <div className="flex flex-col p-4 cursor-pointer text-xl">
              All rights reserved. @2024 by abcd.
@@ -15,7 +15,7 @@ const Footer = () => {
             </div>
         </div>
 
-       </div>
+       </div> */}
     </div>  );
 }
  

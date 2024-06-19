@@ -76,7 +76,7 @@ import {
                 Home
               </NavigationMenuLink>
             </Link>
-            <NavigationMenuContent>
+            {/* <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
@@ -104,11 +104,20 @@ import {
                     Join the community and get help or support.
                 </ListItem>
               </ul>
-            </NavigationMenuContent>
+            </NavigationMenuContent> */}
           </NavigationMenuItem>
         
-            
           <NavigationMenuItem>
+            <Link href="../../comp/data" legacyBehavior passHref>
+              <NavigationMenuLink
+              className=" font-medium  ml-7"
+              >
+                Insights
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+            
+          {/* <NavigationMenuItem>
           <NavigationMenuTrigger className=" font-medium  ml-7">Insights</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -128,7 +137,7 @@ import {
 
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
 
         <NavigationMenuItem>
           <NavigationMenuTrigger className=" font-medium  ml-7">Research</NavigationMenuTrigger>
@@ -136,10 +145,10 @@ import {
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 
               <ListItem href="../../services/research" title="References">
-                Re-usable components built using Radix UI and Tailwind CSS.
+                Curated studies validating MoA prediction technology.
               </ListItem>
               <ListItem href="../../services/useCases" title="Use cases">
-                Re-usable components built using Radix UI and Tailwind CSS.
+                 Applied in diverse research for drug discovery.
               </ListItem>
 
 

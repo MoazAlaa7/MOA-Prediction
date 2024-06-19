@@ -32,11 +32,16 @@ const ActionButtons = () => {
                 <div
                   className={`flex flex-col space-y-4 items-start w-full text-lg text-${textColor} mt-10`}
                 >
-                  <Link href="/">Sign in</Link>
-                  <Link href="../../Prediction">Get Started</Link>
                   <Link href="/">Home</Link>
-                  <Link href="../../overview">Overview</Link>
+                  <Link href="../../Prediction">Get Started</Link>
+                  <Link href="../../services/research">Researches</Link>
+                  <Link href="../../services/useCases">Use Cases</Link>
+                  
+                  
+                  
+                  <Link href="../../comp/data">Insights</Link>
                   <Link href="../../Prediction">Prediction</Link>
+                  <Link href="../../overview">Overview</Link>
                 </div>
               </SheetDescription>
             </SheetHeader>

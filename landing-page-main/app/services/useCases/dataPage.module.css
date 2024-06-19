@@ -109,7 +109,7 @@
 /* Hover state styles */
 .link:hover,
 .link.selected {
-  background-color:black; /* Example hover background color */
+  background-color:#0070f3; /* Example hover background color */
   color: #fff; /* Example text color on hover */
 }
 

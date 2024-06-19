@@ -1,25 +1,47 @@
-/* Container for the table of contents */
+/* dataPage.module.css */
+.navlink {
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
+}
+
+.navlink:hover {
+  color: white;
+  background-color:#0070f3;
+  border-radius: 0.5rem;
+}
+
+.navlink.active {
+  color: white;
+  font-weight: bold;
+  background-color:#0070f3; /* Light background to indicate active */
+  border-radius: 0.5rem;
+}
+
+/* Other styles */
 .toc_container {
-  position: sticky; /* Change to sticky positioning */
-  left: 5%; /* You can adjust this as necessary */
-  top: 50%; /* Adjust as necessary */
+  position: sticky;
+  left: 5%;
+  top: 50%;
   transform: translateY(-50%);
   background-color: #fff;
   border-radius: 8px;
   padding: 0px;
   transition: all 0.3s ease;
-  z-index: 1000; /* Ensure the TOC appears above other content */
-  width: 20%; /* Set a fixed width for the container */
+  z-index: 1000;
+  width: 20%;
 }
 
-/* Styling for the table of contents */
 .toc {
   list-style: none;
   padding: 0;
 }
 
 .toc li {
-  margin-bottom: 20px; /* Adjust spacing between items */
+  margin-bottom: 20px;
   cursor: pointer;
   color: #333;
   transition: all 0.3s ease;
@@ -27,44 +49,32 @@
 
 .toc li.active {
   font-weight: bold;
-  color: #0070f3; /* Change color for active section */
-  text-decoration: underline; /* Underline the text for active section */
-  text-decoration-color: #002044; /* Set the underline color to black */
-  text-decoration-skip-ink: auto; /* Allow ink skipping for underline */
+  color: #0070f3;
+  text-decoration: underline;
+  text-decoration-color: #002044;
+  text-decoration-skip-ink: auto;
   text-underline-offset: 1rem;
 }
 
 .toc li:hover {
-  color: #0070f3; /* Change color on hover */
+  color: #0070f3;
 }
 
-/* Update the CSS for the content container */
 .content {
   flex: 1;
-  margin-left: 20%; /* Adjust margin to account for TOC width */
+  margin-left: 20%;
 }
 
-/* Adjust margin for the header to prevent overlap with TOC */
 .header {
   align-items: center;
   padding-bottom: 40px;
   margin-right: 150px;
 }
-.nav{
+
+.nav {
   margin-top: 8rem;
-  
 }
-.navlink {
-  padding: 0.5rem;
-  margin-bottom:4rem;
-  
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  display: block; /* Ensures each link occupies full width */
-}
-
-
 
 .sectioncontainer {
-  margin-top: 2rem; /* Adjust as needed */
+  margin-top: 2rem;
 }
