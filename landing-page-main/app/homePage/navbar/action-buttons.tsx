@@ -35,7 +35,7 @@ const ActionButtons = () => {
                   <Link href="/">Home</Link>
                   <Link href="../../Prediction">Get Started</Link>
                   <Link href="../../services/research">Researches</Link>
-                  <Link href="../../services/useCases">Use Cases</Link>
+                  <Link href="../../services/useCases">Case Studies</Link>
                   
                   
                   

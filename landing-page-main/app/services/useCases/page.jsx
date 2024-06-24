@@ -1,143 +1,226 @@
-"use client"
-import { useState } from "react";
-import SectionOne from "./sections/sectionOne";
-import SectionTwo from "./sections/sectionTwo";
-import SectionThree from "./sections/sectionThree";
-import SectionFour from "./sections/sectionFour";
-import SectionFive from "./sections/sectionFive";
-import SectionSix from "./sections/sectionSix";
-import SectionSeven from "./sections/sectionSeven";
-import SectionEight from "./sections/sectionEight";
-import SectionNine from "./sections/sectionNine";
-import SectionTen from "./sections/sectionTen";
-import styles from './dataPage.module.css'
 
-function Sidebar() {
-  const [selectedContent, setSelectedContent] = useState("sectionOne");
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false); // New state for sidebar collapse
+import Link from "next/link";
+import styles from "./Component.module.css"; // Import CSS module for custom styling
 
-  const handleContentChange = (contentId) => {
-    setSelectedContent(contentId);
-  };
-
-  const toggleSidebar = () => {
-    setIsSidebarCollapsed(!isSidebarCollapsed);
-  };
+export default function Component() {
   return (
-    <div className="flex min-h-screen w-full">
-                  {!isSidebarCollapsed && (
-        <div className="border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
-          <div className="flex h-full max-h-screen flex-col gap-2">
-            <div className="flex-1 overflow-auto py-2">
-              <nav className="grid items-start px-4 text-sm font-medium">
-
-              <a
-                className={`flex items-center gap-3 rounded-lg border mb-10 px-10 py-2 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionOne' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionOne")}
+    <section className="w-full py-12 md:py-24 lg:py-32">
+      <div className="container grid grid-cols-1 gap-6 px-4 md:grid-cols-2 md:gap-8 md:px-6 lg:gap-10">
+        
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight"> Anti-inflammatory</h3>
+              </div>
+              <Link
+                href="/services/useCases/anti-inflammatory"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
               >
-                 Anti-inflammatory
-              </a>
-                <a
-                  className={`flex items-center gap-3 rounded-lg border mb-10 px-10 py-2 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionTwo' ? styles.selected : ''}`}
-                  href="#"
-                  onClick={() => handleContentChange("sectionTwo")}
-                >
-                Antibiotic/Antiviral/Antifungal
-              </a>
-              <a
-                className={`flex items-center gap-3   rounded-lg px-10 border mb-10 py-2 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionThree' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionThree")}
-              >
-                Antineoplastic/Anticancer 
-              </a>
-              <a
-                className={`flex items-center gap-3 rounded-lg px-10 py-2 border mb-10 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionFour' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionFour")}
-              >
-                   Neurological Agents
-              </a>
-              <a
-                className={`flex items-center gap-3 rounded-lg px-10 py-2 border mb-10 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionFive' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionFive")}
-              >
-                 Cardiovascular Agents
-              </a>
-              <a
-                className={`flex items-center gap-3 rounded-lg px-10 py-2 border mb-10 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionSix' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionSix")}
-              >
-                 Endocrine Agents
-              </a>
-              <a
-                className={`flex items-center gap-3 rounded-lg px-10 py-2 border mb-10 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionSeven' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionSeven")}
-              >
-                 Immunomodulators
-              </a>
-              <a
-                className={`flex items-center gap-3 rounded-lg px-10 py-2 border mb-10 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionEight' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionEight")}
-              >
-                 Analgesics/Anesthetics
-              </a>
-              <a
-                className={`flex items-center gap-3 rounded-lg px-10 py-2 border mb-10 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionNine' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionNine")}
-              >
-                 Gastrointestinal Agents
-              </a>
-              <a
-                className={`flex items-center gap-3 rounded-lg px-10 py-2 border mb-10 dark:text-white text-gray-900 transition-all ${styles.link} ${selectedContent === 'sectionTen' ? styles.selected : ''}`}
-                href="#"
-                onClick={() => handleContentChange("sectionTen")}
-              >
-                 Respiratory Agents
-              </a>
-            </nav>
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
             </div>
           </div>
-        </div>
-      )}
-       <button
-        className="lg:hidden bg-gray-100 dark:bg-gray-800 px-3 py-1 fixed bottom-4 right-4 rounded-full shadow-lg z-10"
-        onClick={toggleSidebar}
-      >
-        {isSidebarCollapsed ? "Use Client" : "Collapse"}
-      </button>
 
-      <div className="flex flex-col flex-1">
-        <header className="flex h-14 items-center gap-4 border-b border-gray-300 dark:border-gray-700 bg-gray-100/40 px-6 dark:bg-gray-800/40">
-          <nav className="hidden lg:flex lg:flex-row lg:items-center lg:gap-3 lg:ml-auto">
-                {/* Header navigation */}
-          </nav>
-        </header>
-        <main className={`flex-1 grid min-h-[calc(100vh - 1rem)]  gap-4 p-4 md:grid-cols-[250px_1fr] md:gap-6 lg:gap-8 md:p-6 ${styles['main-content']}`}> {/* Content based on selection */}  
-          <div className="overflow-auto">
-            {selectedContent === "sectionOne" && <SectionOne />}
-            {selectedContent === "sectionTwo" && <SectionTwo />}
-            {selectedContent === "sectionThree" && <SectionThree />}
-            {selectedContent === "sectionFour" && <SectionFour />}
-            {selectedContent === "sectionFive" && <SectionFive />}
-            {selectedContent === "sectionSix" && <SectionSix />}
-            {selectedContent === "sectionSeven" && <SectionSeven />}
-            {selectedContent === "sectionEight" && <SectionEight />}
-            {selectedContent === "sectionNine" && <SectionNine />}
-            {selectedContent === "sectionTen" && <SectionTen />}
-            {/* Add rendering logic for other sections */}
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight">Antibiotic/Antiviral/Antifungal</h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
           </div>
-
-        </main>
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight">Antineoplastic/Anticancer </h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight"> Neurological Agents</h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight">Cardiovascular Agents</h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight">Endocrine Agents</h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight">Immunomodulators</h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight">Analgesics/Anesthetics</h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight">Gastrointestinal Agents</h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+          <div
+            
+            className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}
+          >
+            <div className={`${styles.gradient} absolute inset-0 z-10 opacity-0 group-hover:opacity-100`} />
+            <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
+              <div>
+                <h3 className="text-2xl font-bold tracking-tight">Respiratory Agents</h3>
+              </div>
+              <Link
+                href="#"
+                className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
+                prefetch={false}
+              >
+                Learn More
+                <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+        
       </div>
-    </div>
+    </section>
   );
 }
 
-export default Sidebar;
+function ArrowRightIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`${styles.arrowIcon} transition-transform duration-300`}
+    >
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  );
+}

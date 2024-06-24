@@ -30,24 +30,11 @@ function SectionOne() {
         <Highlight className="text-black dark:text-white">
           Data Exploration
         </Highlight>
-<div className="text-lg ">
+<div className="text-lg pt-10">
 Navigate through the dataset to gain a comprehensive understanding of its structure and contents.
 </div>
       </motion.h1>
     </HeroHighlight>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       <article className={styles.article}>

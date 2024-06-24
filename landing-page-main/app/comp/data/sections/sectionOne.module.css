@@ -1,45 +1,13 @@
-/* Article.module.css */
 .container {
   margin: 0 auto;
   max-width: 1200px;
-  padding: 20px; /* Add padding for spacing */
+  padding: 0rem 20px;
+  
 }
 
 .article {
   margin-top: 40px;
 }
-
-.section {
-  margin-top: 20px;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.section h3 {
-  margin-top: 1.5rem;
-  font-size: 1.7rem;
-}
-
-.section p {
-  margin-bottom: 1.5rem;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 1.5rem;
-}
-
-.title {
-  margin-top: 2rem;
-  font-size: 1.8rem;
-}
-
-
-
 
 .header {
   margin-bottom: 20px;
@@ -53,14 +21,27 @@
   color: #666;
 }
 
+.content {
+  margin-top: 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
 
+.content p {
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+
+}
 
 .content h2 {
   margin-top: 2rem;
   font-size: 1.8rem;
 }
 
-
+.content h3 {
+  margin-top: 1.5rem;
+  font-size: 1.7rem;
+}
 
 .content ul {
   margin-left: 2rem;
@@ -104,3 +85,8 @@
   color: #333;
 }
 
+.content img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+}

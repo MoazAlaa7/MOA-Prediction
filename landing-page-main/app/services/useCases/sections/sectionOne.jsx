@@ -7,6 +7,10 @@ function SectionOne() {
     
 <>
        
+
+
+
+       
     <article className=" shadow-lg rounded-xl p-8 mb-8">
       <header className="mb-6">
         <h1 className="text-3xl font-bold mb-2">Introduction</h1>
