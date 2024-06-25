@@ -38,3 +38,12 @@
 .group:hover .arrowIcon {
   transform: translateX(0.5rem);
 }
+.diabetesCard {
+  background-color: #f0f5f9; /* Light blue background */
+  color: #1a202c; /* Dark blue text color */
+  border: 2px solid #cbd5e0; /* Light gray border */
+}
+
+.diabetesCard .gradient {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+}

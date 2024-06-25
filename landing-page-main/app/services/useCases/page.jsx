@@ -37,7 +37,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight">Antibiotic/Antiviral/Antifungal</h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Antibiotic-Antiviral-Antifungal"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >
@@ -56,7 +56,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight">Antineoplastic/Anticancer </h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Antineoplastic-Anticancer"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >
@@ -75,7 +75,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight"> Neurological Agents</h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Neurological-Agents"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >
@@ -94,7 +94,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight">Cardiovascular Agents</h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Cardiovascular-Agents"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >
@@ -113,7 +113,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight">Endocrine Agents</h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Endocrine-Agents"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >
@@ -132,7 +132,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight">Immunomodulators</h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Immunomodulators"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >
@@ -151,7 +151,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight">Analgesics/Anesthetics</h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Analgesics-Anesthetics"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >
@@ -170,7 +170,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight">Gastrointestinal Agents</h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Gastrointestinal-Agents"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >
@@ -189,7 +189,7 @@ export default function Component() {
                 <h3 className="text-2xl font-bold tracking-tight">Respiratory Agents</h3>
               </div>
               <Link
-                href="#"
+                href="/services/useCases/Respiratory-Agents"
                 className={`${styles.learnMore} inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground transition-colors duration-300`}
                 prefetch={false}
               >

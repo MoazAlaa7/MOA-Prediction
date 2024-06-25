@@ -150,6 +150,9 @@ import {
               <ListItem href="../../services/useCases" title="Use cases">
                  Applied in diverse research for drug discovery.
               </ListItem>
+              <ListItem href="../../services/diabetes-case-study" title="diabetes case study">
+                 Applied in diverse research for drug discovery.
+              </ListItem>
 
 
             </ul>
