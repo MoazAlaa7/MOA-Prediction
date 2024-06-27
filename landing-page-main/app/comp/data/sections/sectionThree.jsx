@@ -13,7 +13,7 @@ function SectionThree() {
       <article className={styles.article}>
 
         
-        <h2 className={styles.title}>Distribution of All Cell Features:</h2>
+        <h2 className="text-2xl mb-4 font-semibold tracking-tight lg:text-3xl">Distribution of All Cell Features:</h2>
                   <Image src='/images/photo_2024-02-25_16-23-48.jpg' width={1000} height={1000} className='py-10'/>
 
         {/* <p className={styles.subtitle}>

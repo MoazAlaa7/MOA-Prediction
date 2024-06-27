@@ -117,3 +117,15 @@
   color: #000000;
   margin-bottom: 0.5rem;
 }
+@media (min-width: 640px) {
+  .heading {
+    font-size: 3rem;
+  }
+  .paragraph {
+    font-size: 1.3rem;
+  }
+  .buttonContainer {
+    flex-direction: row;
+  }
+}
+

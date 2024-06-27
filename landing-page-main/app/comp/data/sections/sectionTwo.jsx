@@ -15,7 +15,7 @@ function SectionTwo() {
           {/* <p className={styles.date}>2020-12-27</p> */}
 
           <section className={styles.content}>
-            <h3>Distribution of all gene features</h3>
+            <h3 className="text-2xl mb-4 font-semibold tracking-tight lg:text-3xl">Distribution of all gene features</h3>
             <Image
               src="/images/photo_2024-02-25_16-25-17.jpg"
               width={1000}

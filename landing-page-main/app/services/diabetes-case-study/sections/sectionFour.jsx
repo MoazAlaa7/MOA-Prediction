@@ -3,6 +3,7 @@ import styles from './sectionFour.module.css'; // Import your CSS module
 import Image from "next/image";
 import Header from '@/components/Header';
 import dynamic from "next/dynamic";
+import Link from 'next/link';
 
 
 function SectionFour() {
@@ -13,9 +14,12 @@ function SectionFour() {
     <div className={styles.container}>
          
 {/* {" "}
-          <Link href="#" prefetch={false}>
-            utility-first
-          </Link>{" "} */}
+          
+          
+          <Link href="" className={styles.link}>insulin</Link>          
+
+          
+          */}
 
       <article className={styles.article}>
 
@@ -27,7 +31,7 @@ function SectionFour() {
 Diabetes can lead to acute (sudden and severe) and long-term complications — mainly due to extreme or prolonged high blood sugar levels.
 
         </p>
-        <h2 className="text-2xl mb-4 font-semibold tracking-tight lg:text-3xl">Acute diabetes complications
+        <h2 className="text-2xl mb-4  mt-10 font-semibold tracking-tight lg:text-3xl">Acute diabetes complications
 </h2>
 
         <p className='text-xl mt-4'>
@@ -35,7 +39,9 @@ Acute diabetes complications that can be life-threatening include:
 
         </p>
         <p className='text-xl mt-4'>
-• Hyperosmolar hyperglycemic state (HHS): This complication mainly affects people with Type 2 diabetes. It happens when your blood sugar levels are very high (over 600 milligrams per deciliter or mg/dL) for a long period, leading to severe dehydration and confusion. It requires immediate medical treatment.
+•           <Link href="https://my.clevelandclinic.org/health/diseases/21147-hyperosmolar-hyperglycemic-state" className={styles.link}>Hyperosmolar hyperglycemic state (HHS):</Link>          
+ This complication mainly affects people with Type 2 diabetes. It happens when your blood sugar levels are very high (over 600 milligrams per deciliter or mg/dL) for a long period, leading to severe           <Link href="https://my.clevelandclinic.org/health/diseases/9013-dehydration" className={styles.link}>dehydration</Link>          
+ and confusion. It requires immediate medical treatment.
 
         </p>
         <p className='text-xl mt-4'>
@@ -43,10 +49,12 @@ Acute diabetes complications that can be life-threatening include:
 
         </p>
         <p className='text-xl mt-4'>
-• Severe low blood sugar (hypoglycemia): Hypoglycemia happens when your blood sugar level drops below the range that’s healthy for you. Severe hypoglycemia is very low blood sugar. It mainly affects people with diabetes who use insulin. Signs include blurred or double vision, clumsiness, disorientation and seizures. It requires treatment with emergency glucagon and/or medical intervention.
+•      Severe     <Link href="https://my.clevelandclinic.org/health/diseases/11647-hypoglycemia-low-blood-sugar" className={styles.link}> low blood sugar</Link>          
+ (hypoglycemia): Hypoglycemia happens when your blood sugar level drops below the range that’s healthy for you. Severe hypoglycemia is very low blood sugar. It mainly affects people with diabetes who use insulin. Signs include blurred or double vision, clumsiness, disorientation and seizures. It requires treatment with           <Link href="https://my.clevelandclinic.org/health/drugs/20287-glucagon-injection" className={styles.link}>emergency glucagon</Link>          
+ and/or medical intervention.
 
         </p>
-<h2 className="text-2xl mb-4 font-semibold tracking-tight lg:text-3xl">Long-term diabetes complications
+<h2 className="text-2xl mb-4 mt-10font-semibold tracking-tight lg:text-3xl">Long-term diabetes complications
 
 </h2>
         <p className='text-xl mt-10'>
@@ -59,64 +67,84 @@ Cardiovascular (heart and blood vessel) issues are the most common type of long-
         </p>
 
         <p className='text-xl mt-4'>
-• Coronary artery disease.
+•           <Link href="https://my.clevelandclinic.org/health/diseases/16898-coronary-artery-disease" className={styles.link}>Coronary artery disease</Link>          
+.
 
         </p>
         <p className='text-xl mt-4'>
-• Heart attack.
+•           <Link href="https://my.clevelandclinic.org/health/diseases/16818-heart-attack-myocardial-infarction" className={styles.link}>Heart attack</Link>          
+.
 
         </p>
         <p className='text-xl mt-4'>
-• Stroke.
+•           <Link href="https://my.clevelandclinic.org/health/diseases/9812-diabetes-and-stroke" className={styles.link}>Stroke</Link>          
+.
 
         </p>
         <p className='text-xl mt-4'>
-• Atherosclerosis.
+•           <Link href="https://my.clevelandclinic.org/health/diseases/16753-atherosclerosis-arterial-disease" className={styles.link}>Atherosclerosis</Link>          
+.
 
 
         </p>
-        <h2 className="text-2xl mb-4 font-semibold tracking-tight lg:text-3xl">Other diabetes complications include:
+        <h2 className="text-2xl mb-4  mt-10 font-semibold tracking-tight lg:text-3xl">Other diabetes complications include:
 </h2>
 
  <p className='text-xl mt-4'>
-• Nerve damage (neuropathy), which can cause numbness, tingling and/or pain.
+• Nerve damage            <Link href="https://my.clevelandclinic.org/health/diseases/21621-diabetic-neuropathy" className={styles.link}>(neuropathy)</Link>          
+, which can cause numbness, tingling and/or pain.
 
         </p>
         <p className='text-xl mt-4'>
-• Nephropathy, which can lead to kidney failure or the need for dialysis or transplant.
+•           <Link href="https://my.clevelandclinic.org/health/diseases/24183-diabetic-nephropathy" className={styles.link}>Nephropathy</Link>          
+, which can lead to           <Link href="https://my.clevelandclinic.org/health/diseases/17689-kidney-failure" className={styles.link}>kidney failure</Link>          
+ or the need for           <Link href="https://my.clevelandclinic.org/health/treatments/14618-dialysis" className={styles.link}>dialysis</Link>          
+ or           <Link href="https://my.clevelandclinic.org/health/treatments/22537-kidney-transplant" className={styles.link}>transplant</Link>          
+.
 
         </p>
         <p className='text-xl mt-4'>
-• Retinopathy, which can lead to blindness.
+• Retinopathy          <Link href="https://my.clevelandclinic.org/health/diseases/8591-diabetic-retinopathy" className={styles.link}>insulin</Link>          
+, which can lead to blindness.
+
+        </p>
+        
+        <p className='text-xl mt-4'>
+•           <Link href="https://my.clevelandclinic.org/health/diseases/21510-diabetic-feet" className={styles.link}>Diabetes-related foot conditions</Link>          
+.
 
         </p>
         <p className='text-xl mt-4'>
-• Diabetes-related foot conditions.
-
-        </p>
-        <p className='text-xl mt-4'>
-• Skin infections.
-
-
-        </p>
-        <p className='text-xl mt-4'>
-• Amputations.
-
-        </p>
-        <p className='text-xl mt-4'>
-• Sexual dysfunction due to nerve and blood vessel damage, such as erectile dysfunction or vaginal dryness.
+•Skin infections.
 
 
         </p>
         <p className='text-xl mt-4'>
-• Gastroparesis.
+•           <Link href="https://my.clevelandclinic.org/health/treatments/21599-amputation" className={styles.link}>Amputations.
+</Link>          
+.
 
         </p>
         <p className='text-xl mt-4'>
-• Hearing loss.
+•            <Link href="https://my.clevelandclinic.org/health/diseases/9121-sexual-dysfunction" className={styles.link}>Sexual dysfunction</Link>          
+ due to nerve and blood vessel damage, such as           <Link href="https://my.clevelandclinic.org/health/diseases/10035-erectile-dysfunction" className={styles.link}>erectile dysfunction</Link>          
+ or            <Link href="" className={styles.link}>vaginal dryness</Link>          
+.
+
+
         </p>
         <p className='text-xl mt-4'>
-• Oral health issues, such as gum (periodontal) disease.
+•           <Link href="https://my.clevelandclinic.org/health/diseases/15522-gastroparesis" className={styles.link}> Gastroparesis</Link>          
+.
+
+        </p>
+        <p className='text-xl mt-4'>
+•            <Link href="https://my.clevelandclinic.org/health/diseases/17673-hearing-loss" className={styles.link}>Hearing loss</Link>          
+.
+        </p>
+        <p className='text-xl mt-4'>
+• Oral health issues, such as           <Link href="https://my.clevelandclinic.org/health/diseases/21482-gum-periodontal-disease" className={styles.link}>gum (periodontal) disease</Link>          
+.
 
         </p>
         <p className='text-xl mt-4'>

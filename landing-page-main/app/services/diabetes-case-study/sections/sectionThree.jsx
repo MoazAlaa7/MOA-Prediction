@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './sectionThree.module.css'; // Import your CSS module
 import Image from "next/image";
 import Header from '@/components/Header';
+import Link from 'next/link';
 
 function SectionThree() {
   return (
@@ -11,9 +12,11 @@ function SectionThree() {
     <div className={styles.container}>
          
 {/* {" "}
-          <Link href="#" prefetch={false}>
-            utility-first
-          </Link>{" "} */}
+          '
+          <Link href="https://my.clevelandclinic.org/health/body/22601-insulin" className={styles.link}>insulin</Link>          
+
+          
+          '*/}
 
       <article className={styles.article}>
 
@@ -41,7 +44,8 @@ Causes of diabetes include:
 
         </p>
         <p className='text-xl mt-4'>
-• Hormonal imbalances: During pregnancy, the placenta releases hormones that cause insulin resistance. can also cause Type 2 diabetes.
+• <Link href="https://my.clevelandclinic.org/health/diseases/22673-hormonal-imbalance" className={styles.link}>Hormonal imbalances</Link>          
+: During pregnancy, the <Link href="https://my.clevelandclinic.org/health/body/22337-placenta" className={styles.link}>placenta</Link>  releases hormones that cause insulin resistance. can also cause Type 2 diabetes.
 
         </p>
         <p className='text-xl mt-4'>
@@ -53,7 +57,9 @@ Causes of diabetes include:
 
         </p>
         <p className='text-xl mt-10'>
-          Long-term use of certain medications can also lead to Type 2 diabetes, including HIV/AIDS medications and corticosteroids.
+          Long-term use of certain medications can also lead to Type 2 diabetes, including <Link href="https://my.clevelandclinic.org/health/diseases/4251-hiv-aids" className={styles.link}>HIV/AIDS</Link>          
+ medications and           <Link href="https://my.clevelandclinic.org/health/drugs/4812-corticosteroids" className={styles.link}>corticosteroids.</Link>          
+
 
         </p>
         <p className='text-xl mt-4'>

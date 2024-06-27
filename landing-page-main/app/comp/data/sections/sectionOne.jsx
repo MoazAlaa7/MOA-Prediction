@@ -40,7 +40,7 @@ Navigate through the dataset to gain a comprehensive understanding of its struct
       <article className={styles.article}>
 
         
-        <h2 className={styles.title}>Categorical Features Analysis</h2>
+        <h2 className="text-2xl mb-4 font-bold tracking-tight lg:text-3xl">Categorical Features Analysis</h2>
         {/* <p className={styles.subtitle}>
           Type of Treatment
         </p> */}
@@ -48,7 +48,7 @@ Navigate through the dataset to gain a comprehensive understanding of its struct
         {/* <p className={styles.date}>2020-12-27</p> */}
 
         <section className={styles.content}>
-          <h3>Type of Treatment</h3>
+          <h2 className="text-2xl mb-4 font-semibold tracking-tight lg:text-3xl">Type of Treatment</h2>
           <Image src='/images/photo_2024-02-25_15-56-50.jpg' width={1000} height={1000} className='py-10'/>
               <p>
           In both the train and the test dataset, we find a similar rate of imbalance in terms of the way treatment was provided:

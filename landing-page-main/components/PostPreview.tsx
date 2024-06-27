@@ -9,7 +9,7 @@ function PostPreview(props) {
       <div className="relative z-20 flex flex-col justify-between gap-4 p-6">
         <div>
           <h3 className="text-2xl font-bold tracking-tight ">{props.title}</h3>
-          <p className="text-muted-foreground dark:text-white">{props.subtitle}</p>
+          <p className="   dark:text-white">{props.subtitle}</p>
         </div>
         <Link
           href={props.link}

@@ -12,7 +12,7 @@
 }
 
 .gradient {
-  background-image: linear-gradient(to right, rgb(201, 201, 201), transparent);
+  background-image: linear-gradient(to right, rgb(159, 159, 159), transparent);
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
 }
