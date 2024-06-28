@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import Navbar from "./homePage/navbar/page";
 import Providers from "./provider";
-import Footer from "./homePage/footer/page";
 
 const font = Outfit({ subsets: ["latin"] });
 
@@ -23,7 +22,7 @@ export default function RootLayout({
         <Providers>
           <Navbar  />
           <main>{children}</main>
-          <Footer />
+          
         </Providers>
       </body>
     </html>

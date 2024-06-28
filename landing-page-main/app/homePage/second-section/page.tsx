@@ -2,11 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import styles from './second-section.module.css';
-import Problem from "@/app/comp/problem/page";
 
 const features = [
   {

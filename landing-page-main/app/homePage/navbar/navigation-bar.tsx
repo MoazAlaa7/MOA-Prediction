@@ -43,7 +43,7 @@ import {
           </NavigationMenuItem>
         
           <NavigationMenuItem>
-            <Link href="../../comp/data" legacyBehavior passHref>
+            <Link href="../../insights" legacyBehavior passHref>
               <NavigationMenuLink
               className=" font-medium  ml-7"
               >
@@ -66,7 +66,7 @@ import {
                  Applied in diverse research for drug discovery.
               </ListItem>
               <ListItem href="../../services/diabetes-case-study" title="diabetes case study">
-                 Applied in diverse research for drug discovery.
+                 Exploring Diabetes: Insights and Research Findings.
               </ListItem>
 
 

@@ -1,12 +1,38 @@
-
+"use client"
 import Link from "next/link";
 import styles from "./Component.module.css"; // Import CSS module for custom styling
+
+import { motion } from "framer-motion";
+import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
+
 
 export default function Component() {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32">
+                            <HeroHighlight>
+      <motion.h1
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: [20, -5, 0],
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.4, 0.0, 0.2, 1],
+        }}
+        className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+      >
+        <Highlight className="text-black dark:text-white">
+           Case Study
+        </Highlight>
+<div className="text-lg pt-10">
+Exploring Diabetes: Insights and Research Findings</div>
+      </motion.h1>
+    </HeroHighlight>
       <div className="container grid grid-cols-1 gap-6 px-4 md:grid-cols-2 md:gap-8 md:px-6 lg:gap-10">
-        
           <div
             
             className={`${styles.card} group relative overflow-hidden rounded-lg border hover:shadow-xl transition-shadow duration-300`}

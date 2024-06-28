@@ -39,7 +39,7 @@ const ActionButtons = () => {
                   
                   
                   
-                  <Link href="../../comp/data">Insights</Link>
+                  <Link href="../../insights">Insights</Link>
                   <Link href="../../Prediction">Prediction</Link>
                   <Link href="../../overview">Overview</Link>
                 </div>

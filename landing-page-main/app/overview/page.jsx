@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import styles from "./overview.module.css";
 import { useTheme } from "next-themes"; // Import useTheme hook
 import { motion } from "framer-motion";

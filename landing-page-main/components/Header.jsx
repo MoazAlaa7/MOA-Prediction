@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import styles from "./header.module.css";
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "./ui/hero-highlight";
 const Header = () => {

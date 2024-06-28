@@ -3,14 +3,38 @@ import React from 'react';
 import styles from './sectionOne.module.css'; // Import your CSS module
 import Image from "next/image";
 import Link from 'next/link';
-
+import { motion } from "framer-motion";
+import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 function SectionOne() {
   return (
     <div className={styles.container}>
+                    <HeroHighlight>
+      <motion.h1
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: [20, -5, 0],
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.4, 0.0, 0.2, 1],
+        }}
+        className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+      >
+        <Highlight className="text-black dark:text-white">
+          Diabetes Case Study
+        </Highlight>
+<div className="text-lg pt-10">
+Exploring Diabetes: Insights and Research Findings</div>
+      </motion.h1>
+    </HeroHighlight>
+
       <article className={styles.article}>
         <div className="px-4 py-6 md:px-6 md:py-12 lg:py-16">
           <article className="prose prose-gray mx-auto max-w-6xl dark:prose-invert">
-            <h1 className="text-4xl mb-10 font-extrabold tracking-tight lg:text-5xl">Diabetes Case Study</h1>
             <h2 className="text-2xl mb-4 font-bold tracking-tight lg:text-3xl">What is diabetes?</h2>
             <p className='text-xl mt-4'>
               Diabetes mellitus is a chronic metabolic disorder characterized by high levels of blood glucose (hyperglycemia) resulting from defects in insulin production, insulin action, or both.
