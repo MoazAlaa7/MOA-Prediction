@@ -24,7 +24,7 @@ function SectionFour() {
         {/* <p className={styles.date}>2020-12-27</p> */}
 
         <section className={styles.content}>
-               <h2>Observing the Top 20 Targets Appeared in the Dataset or Sample:</h2>
+               <h2 className='text-2xl'>Observing the Top 20 Targets Appeared in the Dataset or Sample:</h2>
         <img src='/images/photo_2024-02-25_16-31-43.jpg' className='py-10'/>
                 <p>
                     From the above bar plot, we could observe the targets nfkb_inhibitor occurring more than 800 times, and proteasome_inhibitor occurring more than 700 times. These are the two target features which have occurred more than any other targets across various samples. So it might be possible that the test data also have occurring of the top target features.
@@ -32,12 +32,12 @@ function SectionFour() {
                 <p>
                     'nfkb_inhibitor' is the most occurring MoA in the training dataset with a frequency of 832, and 'Proteasome_inhibitor' is the second most occurring MoA in the training set. Most of the MoAs are occurring less than 100 number of times. There are certain MoA's like 'erbb2_inhibitor' and 'atp-sensitive_potassium_channel_antagonist' not occurring even once.
                 </p>
-                <h2>The Number of Targets per Sample:</h2>
+                <h2  className='text-2xl'>The Number of Targets per Sample:</h2>
         <img src='/images/photo_2024-02-25_16-33-03.jpg' width={1000} height={1000} className='py-10'/>
                 <p>
                     As one can observe from the above histogram, the most number of MoAs simultaneously occurring in a single datapoint is 1. Hence one can say that for most of the cases the training set is behaving like a multi-class classification while for some points behaving like multi-label class classification. The second most occurring case is of the samples which do not give rise to any kind of MoA. There are some cases with multiple occurring MoAs in a sample, the maximum number of MoAs occurring together in any sample in the train dataset is 7.
                 </p>
-                <h2>Cell Features Correlation Analysis:</h2>
+                <h2   className='text-2xl'>Cell Features Correlation Analysis:</h2>
         <img src='/images/photo_2024-02-25_16-35-45.jpg' width={1000} height={1000} className='py-10'/>
                 <p>
                     Many of them look like slightly skewed Gaussian distribution. More or less, most of the genes have been expressed either positive or negative, depending upon the skewness of the distribution. There are certain genes like 'g-534' which have been heavily negatively expressed by some drugs, while some genes like 'g-219' seem to be immune to the drugs, hence genes like 'g-219' might not be a good feature for classification as there is not much variance.
@@ -50,7 +50,7 @@ function SectionFour() {
                 <p>The are certain genes like'c-82' which has more left skewed distribution (most of the values are negatively) which means that after the treatment of cell line 'c-82' with drugs, there are more number of dead cells than the living cells in most of the situations</p>
                 
                 
-                <h2>genes which are Highly Positive  Correlated:</h2>
+                <h2  className='text-2xl'>genes which are Highly Positive  Correlated:</h2>
 
             <div className={styles.table_container}>
               <table>
@@ -110,7 +110,7 @@ function SectionFour() {
                 </tbody>
               </table>
             </div>
-            <h2>Cell features which are positively highly correlated</h2>
+            <h2  className='text-2xl'>Cell features which are positively highly correlated</h2>
             <div className={styles.table_container}>
               <table>
                 <thead>
@@ -193,7 +193,7 @@ function SectionFour() {
                 </p>
 
                 </p>
-                <h2>Multivariate Analysis - Target Variables - Correlation Between Train Target Variables:</h2>
+                <h2  className='text-2xl'>Multivariate Analysis - Target Variables - Correlation Between Train Target Variables:</h2>
         <img src='/images/photo_2024-02-25_16-46-46.jpg' width={1000} height={1000} className='py-10'/>
         
                 <p>

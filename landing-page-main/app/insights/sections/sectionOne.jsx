@@ -60,7 +60,7 @@ Navigate through the dataset to gain a comprehensive understanding of its struct
           of samples in the train and test dataset respectively.
         </p>
 
-        <h3>Time Duration of Treatment</h3>
+        <h3 className='text-2xl'>Time Duration of Treatment</h3>
         <p>
           The datasets contain samples treated and observed at different time intervals-24, 48, 72 hours.
         </p>
@@ -71,7 +71,7 @@ Navigate through the dataset to gain a comprehensive understanding of its struct
           observed after 24 and 72 hours, around 34.64% and 34.58% in the train and test dataset respectively.
         </p>
 
-        <h3>Doses of Drugs</h3>
+        <h3  className='text-2xl'>Doses of Drugs</h3>
         <p>
           The datasets contain samples treated with two different dosages of drugs D1 and D2.
         </p>

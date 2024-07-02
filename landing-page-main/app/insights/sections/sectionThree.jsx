@@ -13,7 +13,7 @@ function SectionThree() {
       <article className={styles.article}>
 
         
-        <h2 className="text-2xl mb-4 font-semibold tracking-tight lg:text-3xl">Distribution of All Cell Features:</h2>
+        <h2 className="text-2xl mb-4 font-semibold tracking-tight lg:text-2xl">Distribution of All Cell Features:</h2>
                   <Image src='/images/photo_2024-02-25_16-23-48.jpg' width={1000} height={1000} className='py-10'/>
 
         {/* <p className={styles.subtitle}>
@@ -29,7 +29,7 @@ function SectionThree() {
         A small peak around -10 suggests that most of the cells in the cell lines collapsed on coming in contact of most of the drugs.
     </p>
 
-    <h2>Cell Features Correlation Analysis:</h2>
+    <h2 className='text-2xl'>Cell Features Correlation Analysis:</h2>
     <p>
         It was clear from the heat map only that there are many cell lines which are positively highly correlated to other cell lines and there are 108 pairs of cell lines highly correlated(above +0.9).
         The highest positive correlation is +0.924619 between 'c-52' and 'c-42' cell lines and the lowest is +0.612084 between 'c-22' and 'c-16'.

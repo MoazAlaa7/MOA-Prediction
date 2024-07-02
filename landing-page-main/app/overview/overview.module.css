@@ -73,6 +73,12 @@
 .justify_center{
   justify-content: center;
 }
+@media (max-width: 640px) {
+
+  .container{
+    margin-left:2rem ;
+  }
+}
 .bg_shape1{
   width: 400px;
   height: 400px; 
