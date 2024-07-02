@@ -5,11 +5,13 @@
   font-weight: 500;
   text-decoration: none;
   display: block;
-  transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-radius 0.3s ease;
 }
 
 .navlink:hover {
   color: white;
+  background-color: #0070f3;
   background-color: #0070f3;
   border-radius: 0.5rem;
 }

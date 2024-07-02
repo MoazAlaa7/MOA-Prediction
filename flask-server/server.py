@@ -18,6 +18,9 @@ from plotly.io import to_json
 import seaborn as sns
 import plotly.graph_objects as go
 
+import orjson
+import plotly.utils
+
 app = Flask(__name__)
 CORS(app)
 
@@ -27,6 +30,10 @@ sub = None
 preview_data = None
 dataset = None
 dataset_details = None
+
+p_min = 0.0005
+p_max = 0.9995
+prediction = pd.DataFrame()
 
 def visualizeData(name_column):
     global dataset
@@ -55,7 +62,7 @@ def visualizeData(name_column):
             yaxis_title='% Drug',
             barmode='stack'
         )
-        return to_json(fig)
+        return to_json(fig, engine="orjson")
 
     elif name_column == 'cp_time':
         cp_time_percentages = dataset['cp_time'].value_counts()*100.0 /len(dataset)
@@ -73,7 +80,7 @@ def visualizeData(name_column):
             yaxis_title='% Treatment',
             barmode='stack'
         )
-        return to_json(fig)
+        return to_json(fig, engine="orjson")
 
     elif name_column == 'cp_dose':
         cp_dose_percentages = dataset['cp_dose'].value_counts()*100.0 /len(dataset)
@@ -91,7 +98,7 @@ def visualizeData(name_column):
             yaxis_title='% Treatment',
             barmode='stack'
         )
-        return to_json(fig)
+        return to_json(fig, engine="orjson")
 
     elif name_column == 'gene_expression':
         data_list = [dataset[feature] for feature in gene_features]
@@ -109,7 +116,7 @@ def visualizeData(name_column):
             barmode='overlay', 
         )
         fig.update_traces(opacity=0.75)
-        return to_json(fig)
+        return to_json(fig, engine="orjson")
 
     elif name_column == 'cell_viability':
         data_list = [dataset[feature] for feature in cell_features]
@@ -127,68 +134,75 @@ def visualizeData(name_column):
             barmode='overlay', 
         )
         fig.update_traces(opacity=0.75)
-        return to_json(fig)
+        return to_json(fig, engine="orjson")
 
 def generate_top_20(pred_results):
-    global sub
+    global prediction
 
-    x_axis = list(sub.columns.values)
+    x_axis = list(prediction.columns.values)
     sig_id_values = x_axis[1:]
-    count_of_target = sub.iloc[:, 1:].sum().values
+    count_of_target = prediction.iloc[:, 1:].sum().values
     dct = dict(zip(sig_id_values, count_of_target))
     sorted_dict = dict(sorted(dct.items(), key=lambda i: i[1], reverse=True))
 
-    colors = sns.color_palette("hsv", 20)
+    num_bars = 20
+    color_palette = [
+        f'rgb(0, 0, {int(255 * (i / num_bars))})' for i in range(num_bars)
+    ]
+
     data=[
-        go.Bar(y=list(sorted_dict.keys())[:20], x=list(sorted_dict.values())[:20], orientation='h', marker_color = colors.as_hex())
+        go.Bar(y=list(sorted_dict.keys())[:num_bars], x=list(sorted_dict.values())[:num_bars], orientation='h', marker_color = color_palette)
     ]
     fig1 = go.Figure(data)
     fig1.update_layout(
-        title='OBSERVING THE TOP 20 TARGET APPEARED IN THE DATASET OR SAMPLE',
-        xaxis_title='COUNT OF TARGET',
-        yaxis_title='TARGET FEATURES',
         yaxis=dict(autorange="reversed"),
         autosize=False,
         width=900,
         height=600,
+        plot_bgcolor='white',  
+        paper_bgcolor='rgb(247, 250, 252)', 
+        # font=dict(color= color)  
     )
 
-    return to_json(fig1)
+    return to_json(fig1, engine="orjson")
 
 def generate_lowest_20(pred_results):
-    global sub
+    global prediction
 
-    x_axis = list(sub.columns.values)
+    x_axis = list(prediction.columns.values)
     sig_id_values = x_axis[1:]
-    count_of_target = sub.iloc[:, 1:].sum().values
+    count_of_target = prediction.iloc[:, 1:].sum().values
     dct = dict(zip(sig_id_values, count_of_target))
     sorted_dict = dict(sorted(dct.items(), key=lambda i: i[1], reverse=True))
 
-    colors = sns.color_palette("hsv", 20)
+    num_bars = 20
+    color_palette = [
+        f'rgb(0, 0, {int(255 * (i / num_bars))})' for i in range(num_bars)
+    ]
+
     data=[
-        go.Bar(y=list(sorted_dict.keys())[-20:], x=list(sorted_dict.values())[-20:], orientation='h', marker_color = colors.as_hex())
+        go.Bar(y=list(sorted_dict.keys())[-num_bars:], x=list(sorted_dict.values())[-num_bars:], orientation='h', marker_color = color_palette)
     ]
     fig2 = go.Figure(data)
     fig2.update_layout(
-        title='OBSERVING THE LOWEST 20 TARGET APPEARED IN THE DATASET OR SAMPLE',
-        xaxis_title='COUNT OF TARGET',
-        yaxis_title='TARGET FEATURES',
         yaxis=dict(autorange="reversed"),
         autosize=False,
         width=900,
         height=600,
+        plot_bgcolor='white',  
+        paper_bgcolor='rgb(247, 250, 252)',
     )
     
-    return to_json(fig2)
+    return to_json(fig2, engine="orjson")
 
 def load_models():
     global encoderGene, encoderCell, sub
     if encoderGene is None:
-        encoderGene = load_model('./models/encoder+xgboost_gene_features.h5')
+        encoderGene = load_model('./models/NN/encoders_gene_features.h5')
     if encoderCell is None:
-        encoderCell = load_model('./models/encoder+xgboost_cell_features.h5')
+        encoderCell = load_model('./models/NN/encoders_cell_features.h5')
     if sub is None:
-        sub = pd.read_csv('./models/sample_submission.csv')
+        sub = pd.read_csv('./models/NN/sample_submission.csv')
 
 def preprocessData(inputData):
     load_models()
@@ -216,7 +230,7 @@ def preprocessData(inputData):
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    global preview_data, dataset_details, dataset
+    global preview_data, dataset_details, dataset, prediction, p_max, p_min
     if request.method == 'POST':
         file = request.files['file']
 
@@ -242,19 +256,31 @@ def upload_file():
 
     new_data = preprocessData(data)
 
-    model = pickle.load(open('./models/xgboost+autoencoder.pkl', 'rb'))
-    prediction = model.predict_proba(new_data)
-    prediction = np.array(prediction)[:, :, 1].T
+    directory = r'.\models\NN\seed' 
+    file_paths = []
 
-    print('FORMAT OF THE PREDICTED OUTPUT : ', type(prediction)) 
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+        file_paths.append(file_path)
+
+    y_pred = np.zeros((new_data.shape[0], 206))
+    for i in file_paths:
+        model = load_model(i)
+        y_pred += model.predict(new_data) / (21)
+
     print('DONE PREDICTION')
     end_time = time.time()
     print('TIME TAKEN TO PREDICT IS : {}'.format(end_time - start_time))
 
-    sub.iloc[:, 1:]  = prediction
+    sub.iloc[ : new_data.shape[0],1:] = np.clip(y_pred,p_min,p_max)
+    prediction = sub.iloc[ : new_data.shape[0], : ]
+    prediction['sig_id'] = data['sig_id']
 
     # Storing preview data temporarily
-    preview_data = sub.to_dict(orient='records')
+    preview_data = {
+        "data": prediction.to_dict(orient='records'),
+        "columns": list(prediction.columns)  # Include the column order
+    }
 
     return jsonify({"file_ready": True})
 
@@ -268,8 +294,9 @@ def get_dataset_details():
 
 @app.route('/download', methods=['GET'])
 def download_file():
+    global prediction
     csv_output = StringIO()
-    sub.to_csv(csv_output, index=False)
+    prediction.to_csv(csv_output, index=False)
     csv_output.seek(0)
 
     return Response(
@@ -288,14 +315,14 @@ def get_preview_data():
 
 @app.route('/top_20_json', methods=['GET'])
 def get_top_20_json():
-    global sub
-    json_data = generate_top_20(sub)
+    global prediction
+    json_data = generate_top_20(prediction)
     return jsonify({"json": json_data})
 
 @app.route('/lowest_20_json', methods=['GET'])
 def get_lowest_20_json():
-    global sub
-    json_data = generate_lowest_20(sub)
+    global prediction
+    json_data = generate_lowest_20(prediction)
     return jsonify({"json": json_data})
 
 @app.route('/visualize', methods=['GET'])
