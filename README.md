@@ -48,7 +48,7 @@ You can also checkout some [Screenshots of the prediction tool](https://imgur.co
 
 Open [http://localhost:3000](http://localhost:3000) on your browser to view the app.
 
-## 💡 App Workflow
+## 💡 Prediction-Tool Workflow
 
 ![Sequence Diagram8](https://github.com/user-attachments/assets/c7963151-8d28-49ff-8b65-5813eba95a6c)
 
