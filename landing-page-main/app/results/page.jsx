@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-import Plot from "react-plotly.js";
+import dynamic from "next/dynamic";
 import styles from "./results.module.css";
+
+const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 
 const Results = () => {
   const [previewData, setPreviewData] = useState(null);
@@ -19,7 +21,7 @@ const Results = () => {
   useEffect(() => {
     const fetchPreviewData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/preview");
+        const response = await axios.get("/api/preview");
         setPreviewData(response.data.data);
         setColumns(response.data.columns); // Set columns order
       } catch (error) {
@@ -33,9 +35,7 @@ const Results = () => {
   useEffect(() => {
     const fetchDatasetDetails = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/dataset_details"
-        );
+        const response = await axios.get("/api/dataset-details");
         setDatasetDetails(response.data);
       } catch (error) {
         console.error("Error fetching dataset details:", error);
@@ -49,14 +49,10 @@ const Results = () => {
   useEffect(() => {
     const fetchJSONs = async () => {
       try {
-        const top20Response = await axios.get(
-          "http://localhost:5000/top_20_json"
-        );
+        const top20Response = await axios.get("/api/top-20-json");
         setTop20JSON(JSON.parse(top20Response.data.json));
 
-        const lowest20Response = await axios.get(
-          "http://localhost:5000/lowest_20_json"
-        );
+        const lowest20Response = await axios.get("/api/lowest-20-json");
         setLowest20JSON(JSON.parse(lowest20Response.data.json));
 
         setIsJSONFetched(true);
@@ -72,7 +68,7 @@ const Results = () => {
 
   const handleDownload = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/download", {
+      const response = await axios.get("/api/download", {
         responseType: "blob",
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -88,9 +84,7 @@ const Results = () => {
 
   const handleFetchVisualization = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/visualize?name_column=${columnName}`
-      );
+      const response = await axios.get(`/api/visualize?name_column=${columnName}`);
       setVisualizationJSON(JSON.parse(response.data.json));
     } catch (error) {
       console.error("Error fetching visualization:", error);
