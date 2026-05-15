@@ -55,15 +55,7 @@ const Prediction = () => {
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate server initialization delay
 
       setActiveStep(1); // Building Models
-      const response = await axios.post(
-        "http://localhost:5000/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("/api/upload", formData);
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate model building delay
 
       if (response.data.file_ready) {
